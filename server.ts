@@ -56,8 +56,9 @@ for(let v of Object.values(rest))v()
 
 
 
-for(let c of Object.values(controller) )
-  new c().rest(app)
+for(let c of Object.values(controller) )new c().rest(app)
+
+
 app.use('/documentation',swaggerUi.serve, swaggerUi.setup(swaggerJson,{ explorer: true }))
 
 
