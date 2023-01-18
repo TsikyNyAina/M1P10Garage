@@ -6,6 +6,7 @@ const Voiture = require('../model/voiture');
 
 class VoitureController {
     rest(app) {
+        const router = express.Router();
         router.post('/', async (req, res) => {
             try {
                 const voiture = await Voiture.create(req.body);
