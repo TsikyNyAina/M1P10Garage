@@ -1,3 +1,6 @@
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ClientController = void 0;
+const decorator_1 = require("../decorator");
 const express = require("express");
 const Client = require('../model/clients');
 
@@ -22,9 +25,21 @@ class ClientController {
         }
     });
     
+    router.post('/', async (req, res) => {
+      try {
+          const client = await Client.create(req.body);
+          res.status(201).json({ message: 'User created successfully', client });
+      } catch (error) {
+          if (error.code === 11000) { // Mongoose specific duplicate key error code
+              return res.status(409).json({ message: 'Email already exists' });
+          }
+          res.status(500).json({ message: error.message });
+      }
+    });
   
       app.use('/client', router);
     }
   }
 
-module.exports = new ClientController();
+  exports.ClientController = ClientController;
+  exports.default = ClientController;
