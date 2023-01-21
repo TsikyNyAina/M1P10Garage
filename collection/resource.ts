@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 
 const ResourceSchema = new Schema({
   id:{type:Number,required:true},
-  nom: {type: String, required: true},
+  name: {type: String, required: true},
   action:{type:Array<typeof ActionShema>,required:true}
 });
 
