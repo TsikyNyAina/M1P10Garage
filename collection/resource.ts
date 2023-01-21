@@ -8,6 +8,9 @@ const Schema = mongoose.Schema;
 
 const ResourceSchema = new Schema({
   name: {type: String, required: true},
+  action:[{
+    type:mongoose.Schema.Types.ObjectId,ref:"Action"
+  }]
 });
 
 
