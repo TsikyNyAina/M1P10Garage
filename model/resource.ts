@@ -6,26 +6,13 @@ export class Resource{
     action:Action[];
     
     create(){
-        ResourceSchema.create(this);
+        return ResourceSchema.create(this);
     }
-    addAction(action:Action){
-        ResourceSchema.find({id:this.id,},(obj:any)=>{
-            console.log("ans : ");
-            
-            console.log(obj);
-            
-        });
-        
-        
-        
-        // Object.assign(this,)
-        // console.log(this);
-        
-
-
-
-        // this.action.push(action);
-        // return ResourceSchema.updateOne({id:this.id},this);
+    async addAction(naction:Action){
+        const {id,name,action}:any=await ResourceSchema.findOne({id:this.id});
+        await Object.assign(this,{id,name,action});
+        await this.action.push(naction);
+        return await ResourceSchema.updateOne({id:this.id},this);
     }
 
 
