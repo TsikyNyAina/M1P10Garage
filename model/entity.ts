@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
+
 class Entityc{
-    id:string;
+    id:mongoose.Types.ObjectId;
     constructor(){
         const hidden={
             set:function(){},
