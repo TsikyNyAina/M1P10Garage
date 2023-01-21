@@ -13,4 +13,8 @@ const FactureSchema = new Schema({
   reparation_id: {type: Number, required: true}
 });
 
+
+
+
+
 module.exports = mongoose.model('Facture', FactureSchema);
