@@ -5,19 +5,25 @@ import { Action, Resource } from "./model";
 connect().then(async ()=>{
 
     const resource=new Resource();
-    resource.id=1;
+    // resource.id=1;
     resource.name="piece"
-    resource.action=[];
+    console.log(await resource.create());
+    
+
     // await resource.create()
 
-    const action =new Action();
-    action.id=1;
-    action.name="prix";
-    action.cout=10000
+    // const action =new Action(); 
+    // action.name="prix";
+    // action.cout=10000;
+    // aresourceId=1
 
-    console.log(
-        await resource.addAction(action)
-    );
+
+
+
+    // await action.create()
+    // console.log(
+    //     await resource.addAction(action)
+    // );
     
 
 
