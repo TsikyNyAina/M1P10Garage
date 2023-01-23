@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose";
 import connect from "./datasource";
-import { Action, Resource } from "./model";
+import { Action, Client, Resource , Responsable} from "./model";
 import * as cast from "./strict/cast"
 
 
@@ -10,7 +10,17 @@ for(let v of Object.values(cast))v()
 
 connect().then(async ()=>{
 
-    console.log((await Resource.find({action:{cout:1000}})));
+    const client = new Responsable();
+    client.name="Client";
+    client.email="client@gmail.com";
+    client.type="atelier";
+    client.mdp="mdp";
+    //console.log(await client.create());
+
+    console.log((await Responsable.findOne({email: client.email, mdp : client.mdp})));
+    
+
+    //console.log((await Resource.find())[0].action[0]);
     
 
 

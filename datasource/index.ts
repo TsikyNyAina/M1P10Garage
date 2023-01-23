@@ -13,7 +13,7 @@ const database=process.env.DB_NAME;
 let uri=`mongodb+srv://${username}:${password}@${host}/?retryWrites=true&w=majority`
 // uri='mongodb+srv://vaika:vaika@vaika.pzzbpw6.mongodb.net/?retryWrites=true&w=majority';
 // console.log(uri);
-
+uri='mongodb://127.0.0.1:27017/vaika';
 
 
 export const connect=async ()=>await mongoose.connect(uri);
