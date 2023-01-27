@@ -1,8 +1,9 @@
-
+ 
 import connect from "./datasource"; 
-
+ 
 import {ObjectId} from 'mongodb';
 import { Activity, Entity, Resource } from "./model/Resource";
+import { Responsable } from "./model";
 // import * as cast from "./strict/cast";
 // for(let v of Object.values(cast)) v()
  
@@ -13,6 +14,18 @@ function assign <T,R extends typeof Entity>(model:R,value:any):any{
 
 
 
+    const client = new Responsable();
+    client.name="Client";
+    client.email="client@gmail.com";
+    client.type="atelier";
+    client.mdp="mdp";
+    //console.log(await client.create());
+
+    // console.log((await Responsable.findOne({email: client.email, mdp : client.mdp})));
+    
+
+    //console.log((await Resource.find())[0].action[0]);
+    
 
 
 connect.then(async (client)=>{

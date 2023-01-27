@@ -1,2 +1,5 @@
 node_modules/
 dist/
+datasource/
+package.json
+package-lock.json
