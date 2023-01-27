@@ -15,3 +15,14 @@ export function Post(path:string){return function(target:any,methodName:string,d
 export function Delete(path:string){return function(target:any,methodName:string,descriptor:PropertyDescriptor){}};
 export function Put(path:string){return function(target:any,methodName:string,descriptor:PropertyDescriptor){}};
 export function Patch(path:string){return function(target:any,methodName:string,descriptor:PropertyDescriptor){}}
+
+
+
+declare type RelationParam={
+    collectionName:string,
+    localField:string,
+    field:string
+    as:string;
+}
+
+ 

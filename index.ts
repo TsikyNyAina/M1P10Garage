@@ -1,40 +1,45 @@
 
-import mongoose from "mongoose";
-import connect from "./datasource";
-import { Action, Resource } from "./model";
-import * as cast from "./strict/cast"
+import connect from "./datasource"; 
 
-
-for(let v of Object.values(cast))v()
-
-
-connect().then(async ()=>{
-
-    console.log((await Resource.find({action:{cout:1000}})));
-    
-
-
-    // const resource=new Resource();
-    // // resource.id=new mongoose.Types.ObjectId("63cbbdb475f762d6a75acdf8");
-    // resource.name="piece"
-    // resource.action=[]
-    // // console.log(await resource.create());
-    // await resource.create()
-
-
-    // const action =new Action(); 
-    // action.name="prix";
-    // action.cout=10000;
-    
-    // console.log(await resource.addAction(action));
-    
-
-    // console.log(await Action.find());
-    
-
-
-    
+import {ObjectId} from 'mongodb';
+import { Activity, Entity, Resource } from "./model/Resource";
+// import * as cast from "./strict/cast";
+// for(let v of Object.values(cast)) v()
+ 
+function assign <T,R extends typeof Entity>(model:R,value:any):any{
+    return Object.assign(new model(),value)
+}
 
 
 
+
+
+
+connect.then(async (client)=>{
+
+    //tester
+    // await Resource.save(client.currentDb,{resourceName:"piece",})
+    // Activity.save(client.currentDb,{activityName:"achat",resourceId:ObjectId.createFromHexString("le ao amin base")})
+
+
+
+    //jereo ito fonction ito fa ao le manao relation...mapiasa $lookup et pipeline
+    await new Resource().getAll(client.currentDb,[{    
+        $addFields:{
+            //mamadika tableau ho lasa le element ao anatiny
+            // activity:{
+            //     $arrayElemAt:["$activity",0]
+            // }
+        }
+    }]).forEach(e=>{
+        console.log(assign(Resource,e))
+
+    })
+
+ 
+     
+
+
+
+    await client.close()
 }).catch(console.log)

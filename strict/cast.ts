@@ -1,18 +1,18 @@
-import {Resource} from "../model/resource";
-import {Action} from "../model/action";
+import {Resource} from "../model/Resource";
+import {Activity} from "../model/Resource";
 
 export function init0(): void {
-    Object.defineProperty(Resource.prototype,"action",{
+    Object.defineProperty(Resource.prototype,"activity",{
         set:function(value:any){
             if (value && !(value instanceof Array))
-                throw new Error(JSON.stringify(value) +"cannot be casted to action:Action[]");
+                throw new Error(JSON.stringify(value) +"cannot be casted to activity:Activity[]");
             for (let i =0;i<(value||[]).length;i++){
-                if(value[i] instanceof Action || !value[i]){}
+                if(value[i] instanceof Activity || !value[i]){}
                 else if (typeof value[i]!= 'object' )
-                    throw new Error(JSON.stringify(value[i]) +" cannot be casted to Action");
-                else value[i]=Object.assign(new Action(),value[i]);
+                    throw new Error(JSON.stringify(value[i]) +" cannot be casted to Activity");
+                else value[i]=Object.assign(new Activity(),value[i]);
             }
-            Object.defineProperty(this,"action",{
+            Object.defineProperty(this,"activity",{
                 value:value,
                 enumerable:true,
                 writable:true,
