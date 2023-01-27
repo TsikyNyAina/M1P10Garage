@@ -2,7 +2,7 @@
 import connect from "./datasource"; 
  
 import {ObjectId} from 'mongodb';
-import { Activity, Entity, Resource } from "./model/Resource";
+import { Activity,  Entity,  Resource } from "./model";
 import { Responsable } from "./model";
 // import * as cast from "./strict/cast";
 // for(let v of Object.values(cast)) v()

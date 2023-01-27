@@ -1,22 +1,11 @@
 import { Db, ObjectId } from "mongodb";
 import { cast } from "../decorator";
+import { Entity } from "./Entity";
 
 
 
 
-export class Entity{
-    id:ObjectId
-    constructor(){
-        Object.defineProperty(Entity.prototype,"_id",{
-            set:function(id){
-                if(typeof id==="string")
-                    this.id=ObjectId.createFromHexString(id);
-                else if (id) this.id=id
-            },
-            configurable:true
-        })
-    }
-}
+
 
 export class Resource extends Entity{
     resourceName:string;
