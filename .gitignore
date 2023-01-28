@@ -3,3 +3,4 @@ dist/
 datasource/
 package.json
 package-lock.json
+.env
