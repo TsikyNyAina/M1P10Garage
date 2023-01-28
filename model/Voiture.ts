@@ -1,26 +1,27 @@
 import { Entity } from "./Entity";
-import { Reparation } from "./reparation";
+import { Reparation } from "./Reparations";
 import { cast } from "../decorator";
 import { Db, ObjectId } from "mongodb";
+import { ModelVoiture } from "./ModelVoiture";
 
 
 
 
 export class Voiture extends Entity{
-    model: String;
     year: String;
     numero: String;
     clientId: ObjectId;
+    modelVoitureId: ObjectId;
+    
+    
+    @cast modelVoiture:ModelVoiture
     @cast reparation: Reparation[];
-    
-    
-    
-    
-    
-    save(db:Db,voiture:Partial<Voiture>){
+
+
+    save(db:Db){
         const collection= db.collection("voiture")
         return collection.insertOne({
-            model:voiture.model,
+            modelVoitureId:this.modelVoitureId,
             year:this.year,
             numero:this.numero,
             clientId:this.clientId
@@ -35,13 +36,13 @@ export class Voiture extends Entity{
                 // relation voiture.clientId =client.id
                 $lookup:{
                     from: "client",
-                    let: { r: `$_clientId` },
+                    let: { r: `$clientId` },
                     as: "client",
                     pipeline:[
                         {
                             $match:{
                                 $expr:{
-                                    $eq:[`$id`,"$$r"]
+                                    $eq:[`$_id`,"$$r"]
                                 }
                             }
                         }

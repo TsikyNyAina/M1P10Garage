@@ -1,0 +1,621 @@
+{
+    "openapi": "3.0.3",
+    "paths": {
+        "/marquePiece/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceController"
+                ]
+            }
+        },
+        "/marquePiece": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marquePieceName": {
+                                        "type": "string"
+                                    },
+                                    "modelVoiture": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "marqueVoitureId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelName": {
+                                                    "type": "string"
+                                                },
+                                                "marqueVoiture": {
+                                                    "properties": {
+                                                        "marqueName": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "id": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "touteModelVoiture": {
+                                        "type": "boolean"
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marquePieceName": {
+                                        "type": "string"
+                                    },
+                                    "modelVoiture": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "marqueVoitureId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelName": {
+                                                    "type": "string"
+                                                },
+                                                "marqueVoiture": {
+                                                    "properties": {
+                                                        "marqueName": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "id": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "touteModelVoiture": {
+                                        "type": "boolean"
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/marquePiece/{id}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceController"
+                ]
+            }
+        },
+        "/marquePieceModelVoiture/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceModelVoitureController"
+                ]
+            }
+        },
+        "/marquePieceModelVoiture": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceModelVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "modelVoitureId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "marquePieceId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceModelVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "modelVoitureId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "marquePieceId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/marquePieceModelVoiture/{id}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarquePieceModelVoitureController"
+                ]
+            }
+        },
+        "/marqueVoiture/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ]
+            }
+        },
+        "/marqueVoiture": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marqueName": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marqueName": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/marqueVoiture/{id}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ]
+            }
+        },
+        "/modelVoiture/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ModelVoitureController"
+                ]
+            }
+        },
+        "/modelVoiture": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ModelVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marqueVoitureId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "modelName": {
+                                        "type": "string"
+                                    },
+                                    "marqueVoiture": {
+                                        "properties": {
+                                            "marqueName": {
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "properties": {
+                                                    "_bsontype": {
+                                                        "type": "object",
+                                                        "example": "\"ObjectID\""
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ModelVoitureController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "marqueVoitureId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "modelName": {
+                                        "type": "string"
+                                    },
+                                    "marqueVoiture": {
+                                        "properties": {
+                                            "marqueName": {
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "properties": {
+                                                    "_bsontype": {
+                                                        "type": "object",
+                                                        "example": "\"ObjectID\""
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/modelVoiture/{id}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ModelVoitureController"
+                ]
+            }
+        }
+    }
+}
