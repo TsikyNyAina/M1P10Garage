@@ -28,17 +28,9 @@ export class ModelVoiture extends Entity{
                 // relation voiture.clientId =client.id
                 $lookup:{
                     from: "marqueVoiture",
-                    let: { r: `$marqueVoitureId` },
-                    as: "marqueVoiture",
-                    pipeline:[
-                        {
-                            $match:{
-                                $expr:{
-                                    $eq:[`$_id`,"$$r"]
-                                }
-                            }
-                        }
-                    ],
+                    localField:"marqueVoitureId",
+                    foreignField:"_id",
+                    as: "marqueVoiture"
                 },
             },
             {

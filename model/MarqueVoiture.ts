@@ -3,8 +3,7 @@ import { assignArray } from "../util";
 import { Entity } from "./Entity";
 
 export class MarqueVoiture extends Entity{
-    marqueName:string;
-    id:ObjectId
+    marqueName:string; 
     async save(db:Db){
         const collection=db.collection("marqueVoiture");
         return  Object.assign(this,await collection.insertOne({

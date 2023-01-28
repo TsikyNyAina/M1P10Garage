@@ -1,7 +1,8 @@
 import { Db, ObjectId } from "mongodb";
+import { swaggerIgnore } from "../decorator";
 
 export class Entity{
-    id:ObjectId
+    @swaggerIgnore id:ObjectId
     constructor(){
         Object.defineProperty(Entity.prototype,"_id",{
             set:function(id){

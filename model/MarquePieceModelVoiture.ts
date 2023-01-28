@@ -5,8 +5,7 @@ import { Entity } from "./Entity";
 
 
 
-export class MarquePieceModelVoiture extends Entity{
-    id:ObjectId;
+export class MarquePieceModelVoiture extends Entity{ 
     modelVoitureId:ObjectId;
     marquePieceId:ObjectId;
     async save(db:Db){

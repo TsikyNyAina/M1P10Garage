@@ -7,8 +7,7 @@ import { ModelVoiture } from "./ModelVoiture";
 export class MarquePiece extends Entity{
     marquePieceName:string;
     @cast modelVoiture:ModelVoiture[];
-    touteModelVoiture:boolean
-    id:ObjectId;
+    touteModelVoiture:boolean ;
     save(db:Db){
         const collection=db.collection("marquePiece");
         return collection.insertOne({

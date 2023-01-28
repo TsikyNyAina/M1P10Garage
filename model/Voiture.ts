@@ -60,7 +60,42 @@ export class Voiture extends Entity{
                     from: "reparation",
                     localField:"_id",
                     as: "reparation",
-                    foreignField:"voitureId"
+                    foreignField:"voitureId",
+                    pipeline:[
+                        {
+                            $lookup:{
+                                from:"reparationDetail",
+                                as:"reparationDetail",
+                                localField:"_id",
+                                foreignField:"reparationId",
+                                pipeline:[
+                                    {
+                                        $lookup:{
+                                            from:"marquePiece",
+                                            as:"marquePiece",
+                                            localField:"marquePieceId",
+                                            foreignField:"_id"
+                                        }
+                                    },
+                                    {
+                                        $addFields:{
+                                            marquePiece:{
+                                                $arrayElemAt:["$marquePiece",0]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            $lookup:{
+                                from:"voiture",
+                                as:"voiture",
+                                localField:"voitureId",
+                                foreignField:"_id"
+                            }
+                        }
+                    ]
                 },
             },
         ];
