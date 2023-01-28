@@ -1,4 +1,4 @@
-import { Response, Express } from "express";
+import { Response, Express, response } from "express";
 import { ObjectId } from "mongodb";
 import { Option } from "../type";
 import connect from "../datasource";
@@ -30,6 +30,23 @@ export class VoitureController{
             await client?.close();
         }
     }
+
+    @Get("/:id")
+    async getById(res:Response,@RequestParam("id") id:string ){
+        let dbClient ;
+        try {
+            dbClient=await connect();
+            let repsonse = await Voiture.getById(dbClient.currentDb,id);
+            
+            res.json(await Voiture.getById(dbClient.currentDb,id))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await dbClient?.close();
+        }
+    }
+
     @Post("")
     async save(res:Response,@RequestBody @cast voiture:Voiture){
         let client;

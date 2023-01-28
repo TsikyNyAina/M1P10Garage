@@ -30,6 +30,17 @@ export class Voiture extends Entity{
             clientId:this.clientId
         }));
     }
+
+    static getById(db: Db, id: string) {
+        return Client.getAll(db, [
+            {
+                $match: {
+                    _id: ObjectId.createFromHexString(id)
+                }
+            }
+        ])
+    }
+    
     static getAll(db:Db,pipeline=new Array()){
         const collection= db.collection("voiture");
         
