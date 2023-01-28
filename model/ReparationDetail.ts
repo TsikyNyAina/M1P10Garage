@@ -49,7 +49,7 @@ export class ReparationDetail extends Entity{
 
     async save(db:Db){
         const collection=db.collection("reparationDetail");
-        return Object.assign(this,collection.insertOne({
+        return Object.assign(this,await collection.insertOne({
             reparationId:this.reparationId,
             marquePieceId:this.marquePieceId,
             quantity:this.quantity,
@@ -77,7 +77,7 @@ export class ReparationDetail extends Entity{
             }
             
         ];
-        return collection.aggregate([...pipeline]).toArray().then(m=>assignArray(ReparationDetail,m))
+        return collection.aggregate([...detailReparationRelation,...pipeline]).toArray().then(m=>assignArray(ReparationDetail,m))
     }
     async update(db:Db){    
         const collection=db.collection("reparationDetail");
