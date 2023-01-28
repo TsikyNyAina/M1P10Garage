@@ -8,12 +8,12 @@ export class Responsable extends Entity {
     type: ResponsableType;
     mdp: String;
     
-    async save(db:Db,client : Partial<Responsable>){
+    async save(db:Db){
         return await db.collection("responsable").insertOne({
-            name: client.name,
-            email: client.email,
-            type : client.type,
-            mdp: client.mdp
+            name: this.name,
+            email: this.email,
+            type : this.type,
+            mdp: this.mdp
         })
     }
 
