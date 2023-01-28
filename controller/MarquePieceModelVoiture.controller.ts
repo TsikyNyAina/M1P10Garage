@@ -36,7 +36,12 @@ export class MarquePieceModelVoitureController{
         let client ;
         try {
             client=await connect();
-            res.json(await MarquePieceModelVoiture.getById(client.currentDb,id as string))
+            const respon =  (await MarquePieceModelVoiture.getById(client.currentDb,id))[0];
+            if (typeof respon === 'undefined'){
+                res.status(404).send("pas de correspondant")
+            }else{
+                res.json(respon)
+            }
         } catch (error:any) {
             res.status(500).send(error.message)
         }

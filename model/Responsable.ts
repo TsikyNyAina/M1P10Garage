@@ -1,6 +1,7 @@
  
 import { Db, ObjectId } from "mongodb";
 import { Entity } from "./Entity";
+import { assignArray } from "../util";
 
 export class Responsable extends Entity {
     name: string;
@@ -17,15 +18,15 @@ export class Responsable extends Entity {
         })
     }
 
-    static async getById(db:Db,id:string){
-        return await Responsable.getAll(db,[
+    static getById(db: Db, id: string) {
+        return Responsable.getAll(db, [
             {
-                $match:{
-                      _id:ObjectId.createFromHexString(id)
+                $match: {
+                    _id: ObjectId.createFromHexString(id)
                 }
             }
         ])
-  }
+    }
 
     async update(db:Db){    
         const collection=db.collection("responsable");
@@ -46,8 +47,7 @@ export class Responsable extends Entity {
 
     static async getAll(db:Db,pipeline:Array<any>=new Array()){
         const collection=db.collection("responsable");
-        
-        return await collection.aggregate([...pipeline])
+        return collection.aggregate([...pipeline]).toArray().then(m=>assignArray(Responsable,m))
     }
 }
 
