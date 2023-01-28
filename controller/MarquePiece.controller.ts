@@ -31,6 +31,22 @@ export class MarquePieceController{
             await client?.close();
         }
     }
+
+    @Get("/:id")
+    async getById(res:Response,@RequestParam("id") id:string ){
+        
+        let client ;
+        try {
+            client=await connect();
+            res.json(await MarquePiece.getById(client.currentDb,id))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await client?.close();
+        }
+    }
+
     @Post("")
     async save(res:Response,@RequestBody @cast marquePiece:MarquePiece){
         let client;

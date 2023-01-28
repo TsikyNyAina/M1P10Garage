@@ -30,6 +30,20 @@ export class ClientController{
             await dbClient?.close();
         }
     }
+
+    @Get("/:id")
+    async getById(res:Response,@RequestParam("id") id:string ){
+        let dbClient ;
+        try {
+            dbClient=await connect();
+            res.json(await Client.getById(dbClient.currentDb,id))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await dbClient?.close();
+        }
+    }
     @Post("")
     async save(res:Response,@RequestBody @cast client:Client){
         let dbClient;

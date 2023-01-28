@@ -29,6 +29,16 @@ export class MarqueVoiture extends Entity{
         const collection=db.collection("marqueVoiture");
         return collection.deleteOne({_id:this.id})    
     }
+
+    static async getById(db: Db, id: string) {
+        return await MarqueVoiture.getAll(db, [
+            {
+                $match: {
+                    Id: ObjectId.createFromHexString(id)
+                }
+            }
+        ])
+    }
     
 }
 

@@ -68,6 +68,16 @@ export class ModelVoiture extends Entity{
         const collection=db.collection("modelVoiture");
         return collection.deleteOne({_id:this.id})    
     }
+
+    static async getById(db: Db, id: string) {
+        return await ModelVoiture.getAll(db, [
+            {
+                $match: {
+                    Id: ObjectId.createFromHexString(id)
+                }
+            }
+        ])
+    }
     constructor(){
         super();
         Object.defineProperty(Entity.prototype,"marqueVoitureId",{

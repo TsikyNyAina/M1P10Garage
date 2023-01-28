@@ -17,10 +17,15 @@ export class Responsable extends Entity {
         })
     }
 
-    getOne(db:Db,query:any,pipeline:Array<any>=new Array()){
-        const collection=db.collection("responsable");
-        return collection.aggregate([{$match:query},{$limit:1},...pipeline]).next().then(val=>val)
-    }
+    static async getById(db:Db,id:string){
+        return await Responsable.getAll(db,[
+            {
+                $match:{
+                      Id:ObjectId.createFromHexString(id)
+                }
+            }
+        ])
+  }
 
     async update(db:Db){    
         const collection=db.collection("responsable");
@@ -39,10 +44,10 @@ export class Responsable extends Entity {
         return collection.deleteOne({_id:this.id})    
     }
 
-    static getAll(db:Db,pipeline:Array<any>=new Array()){
+    static async getAll(db:Db,pipeline:Array<any>=new Array()){
         const collection=db.collection("responsable");
         
-        return  collection.aggregate([...pipeline])
+        return await collection.aggregate([...pipeline])
     }
 }
 

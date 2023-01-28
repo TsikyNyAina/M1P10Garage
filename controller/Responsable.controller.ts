@@ -17,12 +17,26 @@ import { Responsable } from "../model";
 export class ResponsableController{
     rest: (app: Express) => void;
     @Get("/:option")
-    async getOne(res:Response,@RequestParam("option") option:Option ){
+    async getAll(res:Response,@RequestParam("option") option:Option ){
         option= option?JSON.parse(option+""):[]
         let dbClient ;
         try {
             dbClient=await connect();
             res.json(await Responsable.getAll(dbClient.currentDb,option as any))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await dbClient?.close();
+        }
+    }
+
+    @Get("/:id")
+    async getOne(res:Response,@RequestParam("id") id:string ){
+        let dbClient ;
+        try {
+            dbClient=await connect();
+            res.json(await Responsable.getById(dbClient.currentDb,id))
         } catch (error:any) {
             res.status(500).send(error.message)
         }

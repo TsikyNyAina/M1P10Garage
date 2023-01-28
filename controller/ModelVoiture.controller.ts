@@ -7,13 +7,6 @@ import { cast, Delete, Get, Post, Put, RequestBody, RequestParam, RestController
 import { MarqueVoiture } from "../model";
 import { ModelVoiture } from "../model/ModelVoiture";
 
-
-
-
-
-
-
-
 @RestController("/modelVoiture")
 export class ModelVoitureController{
     rest: (app: Express) => void;
@@ -24,6 +17,20 @@ export class ModelVoitureController{
         try {
             client=await connect();
             res.json(await ModelVoiture.getAll(client.currentDb,option as any))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await client?.close();
+        }
+    }
+
+    @Get("/:id")
+    async getById(res:Response,@RequestParam("id") id:string ){
+        let client ;
+        try {
+            client=await connect();
+            res.json(await ModelVoiture.getById(client.currentDb,id as string))
         } catch (error:any) {
             res.status(500).send(error.message)
         }

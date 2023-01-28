@@ -10,27 +10,27 @@ export class Client extends Entity {
     email: String;
     phoneNumber: String;
     mdp: String;
-    @cast voiture:Voiture[];
-    
-    async save(db:Db){
-        return Object.assign(this,await db.collection("client").insertOne({
+    @cast voiture: Voiture[];
+
+    async save(db: Db) {
+        return Object.assign(this, await db.collection("client").insertOne({
             name: this.name,
             email: this.email,
-            phone_number : this.phoneNumber,
+            phone_number: this.phoneNumber,
             mdp: this.mdp
         }))
     }
-    static getAll(db:Db,pipeline:Array<any>=new Array()){
-        const collection=db.collection("client");
-        const relationVoiture={
-            $lookup:{
+    static async getAll(db: Db, pipeline: Array<any> = new Array()) {
+        const collection = db.collection("client");
+        const relationVoiture = {
+            $lookup: {
                 from: "voiture",
                 localField: `$_id`,
                 foreignField: `$clientId`,
                 as: "voiture",
-                pipeline:[
+                pipeline: [
                     {
-                        $lookup:{
+                        $lookup: {
                             from: "reparation",
                             localField: `$_id`,
                             foreignField: `$voitureId`,
@@ -39,26 +39,35 @@ export class Client extends Entity {
                     }
                 ],
             },
-        }; 
-        return  collection.aggregate([relationVoiture,...pipeline])
+        };
+        return collection.aggregate([relationVoiture, ...pipeline])
     }
-    async update(db:Db){    
-        const collection=db.collection("client");
-        await collection.updateOne({_id:this.id},{
-            $set:{
-                name:this.name ,
-                email:this.email ,
-                phoneNumber:this.phoneNumber ,
-                mdp:this.mdp ,
+    async update(db: Db) {
+        const collection = db.collection("client");
+        await collection.updateOne({ _id: this.id }, {
+            $set: {
+                name: this.name,
+                email: this.email,
+                phoneNumber: this.phoneNumber,
+                mdp: this.mdp,
             }
         })
         return this;
     }
-    delete(db:Db){
-        const collection=db.collection("client");
-        return collection.deleteOne({_id:this.id})    
+    delete(db: Db) {
+        const collection = db.collection("client");
+        return collection.deleteOne({ _id: this.id })
     }
-    
 
-    
+    static async getById(db: Db, id: string) {
+        return await Client.getAll(db, [
+            {
+                $match: {
+                    Id: ObjectId.createFromHexString(id)
+                }
+            }
+        ])
+    }
+
+
 }

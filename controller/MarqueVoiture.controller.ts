@@ -30,6 +30,21 @@ export class MarqueVoitureController{
             await client?.close();
         }
     }
+
+    @Get("/:option")
+    async getById(res:Response,@RequestParam("id") id:string ){
+        
+        let client ;
+        try {
+            client=await connect();
+            res.json(await MarqueVoiture.getById(client.currentDb,id as string))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await client?.close();
+        }
+    }
     @Post("")
     async save(res:Response,@RequestBody @cast marqueVoiture:MarqueVoiture){
         let client;
