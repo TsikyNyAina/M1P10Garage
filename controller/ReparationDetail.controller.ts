@@ -16,7 +16,7 @@ import { ReparationDetail } from "../model";
 @RestController("/reparationDetail")
 export class ReparationDetailController{
     rest: (app: Express) => void;
-    @Get("/:option")
+    @Get("/option/:option")
     async getAll(res:Response,@RequestParam("option") option:Option ){
         option= option?JSON.parse(option+""):[]
         let client ;

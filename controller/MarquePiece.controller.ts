@@ -17,7 +17,7 @@ import { MarquePiece } from "../model/MarquePiece";
 @RestController("/marquePiece")
 export class MarquePieceController{
     rest: (app: Express) => void;
-    @Get("/:option")
+    @Get("/option/:option")
     async getAll(res:Response,@RequestParam("option") option:Option ){
         option= option?JSON.parse(option+""):[]
         let client ;
