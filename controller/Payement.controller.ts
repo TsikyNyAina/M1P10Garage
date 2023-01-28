@@ -35,7 +35,12 @@ export class PayementController{
         let dbClient ;
         try {
             dbClient=await connect();
-            res.json(await Payement.getById(dbClient.currentDb,id))
+            const respon =  (await Payement.getById(dbClient.currentDb,id))[0];
+            if (typeof respon === 'undefined'){
+                res.status(404).send("pas de correspondant")
+            }else{
+                res.json(respon)
+            }
         } catch (error:any) {
             res.status(500).send(error.message)
         }
