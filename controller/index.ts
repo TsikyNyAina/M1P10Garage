@@ -1,4 +1,4 @@
-// export * from "./ClientController"
+export * from "./Client.controller"
 export * from "./MarquePiece.controller"
 export * from "./MarqueVoiture.controller"
 export * from "./ModelVoiture.controller"

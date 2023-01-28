@@ -1,5 +1,5 @@
 import { Entity } from "./Entity";
-import { Reparation } from "./Reparations";
+import { Reparation } from "./Reparation";
 import { cast } from "../decorator";
 import { Db, ObjectId } from "mongodb";
 import { ModelVoiture } from "./ModelVoiture";

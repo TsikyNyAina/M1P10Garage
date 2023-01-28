@@ -24,7 +24,6 @@ export class Reparation extends Entity {
     
     
     voitureId: ObjectId;
-    voiture:Voiture;
     reparationDetail:ReparationDetail[];
 
 

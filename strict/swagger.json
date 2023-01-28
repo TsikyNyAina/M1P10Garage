@@ -1,6 +1,496 @@
 {
     "openapi": "3.0.3",
     "paths": {
+        "/clientController/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ClientController"
+                ]
+            }
+        },
+        "/clientController": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ClientController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "email": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "phoneNumber": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "mdp": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "voiture": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "year": {
+                                                    "properties": {
+                                                        "length": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "numero": {
+                                                    "properties": {
+                                                        "length": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "clientId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelVoitureId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelVoiture": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                },
+                                                                "id": {
+                                                                    "properties": {
+                                                                        "_bsontype": {
+                                                                            "type": "object",
+                                                                            "example": "\"ObjectID\""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "id": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "reparation": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "voitureId": {
+                                                                "properties": {
+                                                                    "_bsontype": {
+                                                                        "type": "object",
+                                                                        "example": "\"ObjectID\""
+                                                                    }
+                                                                }
+                                                            },
+                                                            "reparationDetail": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "reparationId": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "pieceId": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "id": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "startDate": {
+                                                                "properties": {
+                                                                    "getVarDate": {
+                                                                        "properties": {}
+                                                                    }
+                                                                }
+                                                            },
+                                                            "endDate": {
+                                                                "properties": {
+                                                                    "getVarDate": {
+                                                                        "properties": {}
+                                                                    }
+                                                                }
+                                                            },
+                                                            "avancement": {
+                                                                "type": "number"
+                                                            },
+                                                            "description": {
+                                                                "type": "string"
+                                                            },
+                                                            "cost": {
+                                                                "type": "number"
+                                                            },
+                                                            "status": {
+                                                                "properties": {}
+                                                            },
+                                                            "id": {
+                                                                "properties": {
+                                                                    "_bsontype": {
+                                                                        "type": "object",
+                                                                        "example": "\"ObjectID\""
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "id": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ClientController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "email": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "phoneNumber": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "mdp": {
+                                        "properties": {
+                                            "length": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "voiture": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "year": {
+                                                    "properties": {
+                                                        "length": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "numero": {
+                                                    "properties": {
+                                                        "length": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "clientId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelVoitureId": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                },
+                                                "modelVoiture": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                },
+                                                                "id": {
+                                                                    "properties": {
+                                                                        "_bsontype": {
+                                                                            "type": "object",
+                                                                            "example": "\"ObjectID\""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "id": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "reparation": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "voitureId": {
+                                                                "properties": {
+                                                                    "_bsontype": {
+                                                                        "type": "object",
+                                                                        "example": "\"ObjectID\""
+                                                                    }
+                                                                }
+                                                            },
+                                                            "reparationDetail": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "reparationId": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "pieceId": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "id": {
+                                                                            "properties": {
+                                                                                "_bsontype": {
+                                                                                    "type": "object",
+                                                                                    "example": "\"ObjectID\""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "startDate": {
+                                                                "properties": {
+                                                                    "getVarDate": {
+                                                                        "properties": {}
+                                                                    }
+                                                                }
+                                                            },
+                                                            "endDate": {
+                                                                "properties": {
+                                                                    "getVarDate": {
+                                                                        "properties": {}
+                                                                    }
+                                                                }
+                                                            },
+                                                            "avancement": {
+                                                                "type": "number"
+                                                            },
+                                                            "description": {
+                                                                "type": "string"
+                                                            },
+                                                            "cost": {
+                                                                "type": "number"
+                                                            },
+                                                            "status": {
+                                                                "properties": {}
+                                                            },
+                                                            "id": {
+                                                                "properties": {
+                                                                    "_bsontype": {
+                                                                        "type": "object",
+                                                                        "example": "\"ObjectID\""
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "id": {
+                                                    "properties": {
+                                                        "_bsontype": {
+                                                            "type": "object",
+                                                            "example": "\"ObjectID\""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clientController/{id}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ClientController"
+                ]
+            }
+        },
         "/marquePiece/{option}": {
             "get": {
                 "parameters": [
