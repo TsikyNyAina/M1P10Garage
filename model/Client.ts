@@ -5,6 +5,7 @@ import { Entity } from "./Entity";
 import { cast, swaggerIgnore } from "../decorator";
 import { Voiture } from "./Voiture";
 import { assignArray } from "../util";
+import { relationVoiture } from "../relation"
 
 export class Client extends Entity {
     name: string;
@@ -23,24 +24,7 @@ export class Client extends Entity {
     }
     static async getAll(db: Db, pipeline: Array<any> = new Array()) {
         const collection = db.collection("client");
-        const relationVoiture = {
-            $lookup: {
-                from: "voiture",
-                localField: `_id`,
-                foreignField: `clientId`,
-                as: "voiture",
-                pipeline: [
-                    {
-                        $lookup: {
-                            from: "reparation",
-                            localField: `_id`,
-                            foreignField: `voitureId`,
-                            as: "reparation",
-                        }
-                    }
-                ],
-            },
-        }; 
+        
         return  collection.aggregate([relationVoiture,...pipeline]).toArray().then(m=>assignArray(Client,m))
     }
     async update(db: Db) {

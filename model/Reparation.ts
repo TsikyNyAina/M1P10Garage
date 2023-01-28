@@ -6,7 +6,7 @@ import { ReparationStatus } from "./ReparationStatus";
 import { ReparationDetail } from "./ReparationDetail";
 import { cast, swaggerIgnore } from "../decorator";
 import { assignArray } from "../util";
-
+import { detailReparationRelation } from "../relation";
 
 
 
@@ -39,41 +39,7 @@ export class Reparation extends Entity {
     }
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("reparation");
-        const detailReparationRelation=[
-            {
-                $lookup:{
-                    from:"reparationDetail",
-                    as:"reparationDetail",
-                    localField:"_id",
-                    foreignField:"reparationId",
-                    pipeline:[
-                        {
-                            $lookup:{
-                                from:"marquePiece",
-                                as:"marquePiece",
-                                localField:"marquePieceId",
-                                foreignField:"_id"
-                            }
-                        },
-                        {
-                            $addFields:{
-                                marquePiece:{
-                                    $arrayElemAt:["$marquePiece",0]
-                                }
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                $lookup:{
-                    from:"voiture",
-                    as:"voiture",
-                    localField:"voitureId",
-                    foreignField:"_id"
-                }
-            }
-        ];
+        
         return collection.aggregate([...detailReparationRelation,...pipeline]).toArray().then(m=>assignArray(Reparation,m))
     }
     async update(db:Db){    

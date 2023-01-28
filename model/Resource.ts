@@ -1,7 +1,7 @@
 import { Db, ObjectId } from "mongodb";
 import { cast } from "../decorator";
 import { Entity } from "./Entity";
-
+import { relation } from "../relation";
 
 
 
@@ -23,23 +23,7 @@ export class Resource extends Entity{
     getAll(db:Db,pipeline:Array<any>=new Array()){
         const collection=db.collection("resource");
 
-        const relation={
-            $lookup:{
-                from: "activity",
-                let: { r: `$_id` },
-                as: "activity",
-                pipeline:[
-                    {
-                        $match:{
-                            $expr:{
-                                $eq:[`$resourceId`,"$$r"]
-                            }
-                        }
-                    }
-                ],
-            },
-
-        }; 
+        
 
 
         return  collection.aggregate([relation,...pipeline])

@@ -5,7 +5,7 @@ import { Db, ObjectId } from "mongodb";
 import { ModelVoiture } from "./ModelVoiture";
 import { Client } from "./Client";
 import { assignArray } from "../util";
-
+import { clientRelation, reparationRelation2,modelVoitureRelation } from "../relation";
 
 
 
@@ -43,110 +43,7 @@ export class Voiture extends Entity{
     
     static getAll(db:Db,pipeline=new Array()){
         const collection= db.collection("voiture");
-        
-        
-        const clientRelation=[
-            {
-                // relation voiture.clientId =client.id
-                $lookup:{
-                    from: "client",
-                    localField:"clientId",
-                    foreignField:"_id",
-                    as: "client",
-                },
-            },
-            {
-                // alaina ny indice 0 satria tableau no averiny vao tsy asina an'ito
-                $addFields:{
-                    client:{
-                        $arrayElemAt:["$client",0]
-                    }
-                }
-            }
-        ];
-        const reparationRelation=[
-            {
-                // relation voiture.id =Reparation.voitureId
-                $lookup:{
-                    from: "reparation",
-                    localField:"_id",
-                    as: "reparation",
-                    foreignField:"voitureId",
-                    pipeline:[
-                        {
-                            $lookup:{
-                                from:"reparationDetail",
-                                as:"reparationDetail",
-                                localField:"_id",
-                                foreignField:"reparationId",
-                                pipeline:[
-                                    {
-                                        $lookup:{
-                                            from:"marquePiece",
-                                            as:"marquePiece",
-                                            localField:"marquePieceId",
-                                            foreignField:"_id"
-                                        }
-                                    },
-                                    {
-                                        $addFields:{
-                                            marquePiece:{
-                                                $arrayElemAt:["$marquePiece",0]
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            $lookup:{
-                                from:"voiture",
-                                as:"voiture",
-                                localField:"voitureId",
-                                foreignField:"_id"
-                            }
-                        }
-                    ]
-                },
-            },
-        ];
-        const modelVoitureRelation=[
-            {
-                $lookup:{
-                    from: "modelVoiture",
-                    localField:"modelVoitureId",
-                    as: "modelVoiture",
-                    foreignField:"_id",
-                    pipeline:[
-                        {
-                            $lookup:{
-                                from:"marqueVoiture",
-                                as:"marqueVoiture",
-                                localField:"marqueVoitureId",
-                                foreignField:"_id",
-                            }
-                        },
-                        {
-                            $addFields:{
-                                marqueVoiture:{
-                                    $arrayElemAt:["$marqueVoiture",0]
-                                }
-                            }
-                        }
-                         
-                    ]
-                },
-                
-            },
-            {
-                $addFields:{
-                    modelVoiture:{
-                        $arrayElemAt:["$modelVoiture",0]
-                    }
-                }
-            }
-        ]
-        return  collection.aggregate([...modelVoitureRelation,...clientRelation,...reparationRelation,...pipeline]).toArray().then(m=>assignArray(Voiture,m))
+        return  collection.aggregate([...modelVoitureRelation,...clientRelation,...reparationRelation2,...pipeline]).toArray().then(m=>assignArray(Voiture,m))
     }
     async update(db:Db){    
         const collection=db.collection("voiture");

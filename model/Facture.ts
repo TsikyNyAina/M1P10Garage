@@ -1,6 +1,7 @@
 
 import { Entity } from "./Entity";
 import { Db, ObjectId } from "mongodb";
+import { reparationRelation } from "../relation";
 
 export class Facture extends Entity {
     dueDate: Date;
@@ -22,36 +23,6 @@ export class Facture extends Entity {
 
     static getAll(db:Db,pipeline=new Array()){
         const collection= db.collection("facture");
-        
-        
-        
-        const reparationRelation=[
-            {
-                // relation voiture.clientId =client.id
-                $lookup:{
-                    from: "reparation",
-                    let: { r: `$_reparationId` },
-                    as: "reparation",
-                    pipeline:[
-                        {
-                            $match:{
-                                $expr:{
-                                    $eq:[`$id`,"$$r"]
-                                }
-                            }
-                        }
-                    ],
-                },
-            },
-            {
-                // alaina ny indice 0 satria tableau no averiny vao tsy asina an'ito
-                $addFields:{
-                    reparation:{
-                        $arrayElemAt:["$reparation",0]
-                    }
-                }
-            }
-        ];
         return  collection.aggregate([...reparationRelation,...pipeline])
     }
 

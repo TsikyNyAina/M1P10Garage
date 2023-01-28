@@ -1,7 +1,7 @@
 import { Db, ObjectId } from "mongodb";
 import { assignArray } from "../util";
 import { Entity } from "./Entity";
-
+import { relationPiece,modelVoiture } from "../relation";
 
 
 
@@ -17,43 +17,11 @@ export class MarquePieceModelVoiture extends Entity{
     }
     static getAll(db:Db,pipeline:Array<any>=new Array()){
         const collection=db.collection("marquePieceModelVoiture");
-        const relationVoiture=[
-            {
-                $lookup:{
-                    from:"modelVoiture",
-                    as:"modelVoiture",
-                    localField:"modelVoitureId",
-                    foreignField:"_id"
-                }
-            },
-            {
-                $addFields:{
-                    modelVoiture:{
-                        $arrayElemAt:["$modelVoiture",0]
-                    }
-                }
-            }
-        ]
-        const relationPiece=[
-            {
-                $lookup:{
-                    from:"marquePiece",
-                    as:"marquePiece",
-                    localField:"marquePieceId",
-                    foreignField:"_id"
-                }
-            },
-            {
-                $addFields:{
-                    marquePiece:{
-                        $arrayElemAt:["$marquePiece",0]
-                    }
-                }
-            }
-        ]
+        
+        
 
 
-        return collection.aggregate([...relationVoiture,...relationPiece,...pipeline]).toArray().then((m)=>assignArray(MarquePieceModelVoiture,m)); 
+        return collection.aggregate([...modelVoiture,...relationPiece,...pipeline]).toArray().then((m)=>assignArray(MarquePieceModelVoiture,m)); 
     }
     delete(db:Db){
         const collection=db.collection("marquePieceModelVoiture");

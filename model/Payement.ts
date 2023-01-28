@@ -3,6 +3,7 @@ import { cast } from "../decorator";
 import { assignArray } from "../util";
 import { Entity } from "./Entity";
 import { Reparation } from "./Reparation";
+import { reparationRelation1 } from "../relation";
 
 export class Payement extends Entity{
     reparationId:ObjectId;
@@ -22,52 +23,8 @@ export class Payement extends Entity{
 
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("payement");
-        const reparationRelation=[
-            {
-                $lookup:{
-                    from:"reparation",
-                    as:"reparation",
-                    localField:"reparationId",
-                    foreignField:"_id",
-                    pipeline:[
-                        {
-                            $lookup:{
-                                from:"reparationDetail",
-                                as:"reparationDetail",
-                                localField:"_id",
-                                foreignField:"reparationId",
-                                pipeline:[
-                                    {
-                                        $lookup:{
-                                            from:"marquePiece",
-                                            as:"marquePiece",
-                                            localField:"marquePieceId",
-                                            foreignField:"_id"
-                                        }
-                                    },
-                                    {
-                                        $addFields:{
-                                            marquePiece:{
-                                                $arrayElemAt:["$marquePiece",0]
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            $lookup:{
-                                from:"voiture",
-                                as:"voiture",
-                                localField:"voitureId",
-                                foreignField:"_id"
-                            }
-                        }
-                    ]
-                }
-            }
-        ];
-        return collection.aggregate([...reparationRelation,...pipeline]).toArray().then(m=>assignArray(Payement,m))
+        
+        return collection.aggregate([...reparationRelation1,...pipeline]).toArray().then(m=>assignArray(Payement,m))
     }
     async update(db:Db){    
         const collection=db.collection("payement");

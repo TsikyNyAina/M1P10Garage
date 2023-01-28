@@ -3,7 +3,7 @@ import { MarqueVoiture } from "./MarqueVoiture";
 import { Db, ObjectId } from "mongodb";
 import { cast } from "../decorator";
 import { assignArray } from "../util";
-
+import { marqueRelation } from "../relation";
 
 
 
@@ -22,28 +22,6 @@ export class ModelVoiture extends Entity{
     }
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("modelVoiture");
-
-        const marqueRelation=[
-            {
-                // relation voiture.clientId =client.id
-                $lookup:{
-                    from: "marqueVoiture",
-                    localField:"marqueVoitureId",
-                    foreignField:"_id",
-                    as: "marqueVoiture"
-                },
-            },
-            {
-                // alaina ny indice 0 satria tableau no averiny vao tsy asina an'ito
-                $addFields:{
-                    marqueVoiture:{
-                        $arrayElemAt:["$marqueVoiture",0]
-                    }
-                }
-            }
-        ];
-
-
         return collection.aggregate([...marqueRelation,...pipeline]).toArray().then(m=>assignArray(ModelVoiture,m))
     }
     async update(db:Db){    
