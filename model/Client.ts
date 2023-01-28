@@ -63,7 +63,7 @@ export class Client extends Entity {
         return await Client.getAll(db, [
             {
                 $match: {
-                    Id: ObjectId.createFromHexString(id)
+                    _id: ObjectId.createFromHexString(id)
                 }
             }
         ])

@@ -89,7 +89,7 @@ export class MarquePiece extends Entity{
         return await MarquePiece.getAll(db,[
             {
                 $match:{
-                      Id:ObjectId.createFromHexString(id)
+                      _id:ObjectId.createFromHexString(id)
                 }
             }
         ])
