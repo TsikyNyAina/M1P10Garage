@@ -8,10 +8,14 @@ import {MarqueVoitureController} from "../controller/MarqueVoiture.controller";
 import {MarqueVoiture} from "../model/MarqueVoiture";
 import {ModelVoitureController} from "../controller/ModelVoiture.controller";
 import {ModelVoiture} from "../model/ModelVoiture";
+import {ResponsableController} from "../controller/Responsable.controller";
+import {Responsable} from "../model/Responsable";
+import {VoitureController} from "../controller/Voiture.controller";
 import {Voiture} from "../model/Voiture";
+import {Reparation} from "../model/Reparation";
+import {ReparationDetail} from "../model/ReparationDetail";
 import {Resource} from "../model/Resource";
 import {Activity} from "../model/Resource";
-import {Reparation} from "../model/Reparation";
 
 export function init0(): void {
     let old0:any=ClientController.prototype.save
@@ -154,6 +158,62 @@ export function init9(): void {
 }
 
 export function init10(): void {
+    let old10:any=ResponsableController.prototype.save
+    Object.defineProperty(ResponsableController.prototype,"save",{
+        value:function(...arg:any[]){
+            if(arg[1] instanceof Responsable || !arg[1]){}
+            else if (typeof arg[1]!= 'object' )
+                throw new Error(JSON.stringify(arg[1]) +"cannot be casted to Responsable client  at ResponsableController.save");
+            else arg[1]=Object.assign(new Responsable(),arg[1]);
+
+            return old10.bind(this)(...arg);
+        }
+    })
+}
+
+export function init11(): void {
+    let old11:any=ResponsableController.prototype.update
+    Object.defineProperty(ResponsableController.prototype,"update",{
+        value:function(...arg:any[]){
+            if(arg[1] instanceof Responsable || !arg[1]){}
+            else if (typeof arg[1]!= 'object' )
+                throw new Error(JSON.stringify(arg[1]) +"cannot be casted to Responsable client  at ResponsableController.update");
+            else arg[1]=Object.assign(new Responsable(),arg[1]);
+
+            return old11.bind(this)(...arg);
+        }
+    })
+}
+
+export function init12(): void {
+    let old12:any=VoitureController.prototype.save
+    Object.defineProperty(VoitureController.prototype,"save",{
+        value:function(...arg:any[]){
+            if(arg[1] instanceof Voiture || !arg[1]){}
+            else if (typeof arg[1]!= 'object' )
+                throw new Error(JSON.stringify(arg[1]) +"cannot be casted to Voiture voiture  at VoitureController.save");
+            else arg[1]=Object.assign(new Voiture(),arg[1]);
+
+            return old12.bind(this)(...arg);
+        }
+    })
+}
+
+export function init13(): void {
+    let old13:any=VoitureController.prototype.update
+    Object.defineProperty(VoitureController.prototype,"update",{
+        value:function(...arg:any[]){
+            if(arg[1] instanceof Voiture || !arg[1]){}
+            else if (typeof arg[1]!= 'object' )
+                throw new Error(JSON.stringify(arg[1]) +"cannot be casted to Voiture voiture  at VoitureController.update");
+            else arg[1]=Object.assign(new Voiture(),arg[1]);
+
+            return old13.bind(this)(...arg);
+        }
+    })
+}
+
+export function init14(): void {
     Object.defineProperty(Client.prototype,"voiture",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -173,7 +233,7 @@ export function init10(): void {
     })
 }
 
-export function init11(): void {
+export function init15(): void {
     Object.defineProperty(MarquePiece.prototype,"modelVoiture",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -193,7 +253,7 @@ export function init11(): void {
     })
 }
 
-export function init12(): void {
+export function init16(): void {
     Object.defineProperty(ModelVoiture.prototype,"marqueVoiture",{
         set:function(value:any){
             if(value instanceof MarqueVoiture || !value){}
@@ -209,7 +269,43 @@ export function init12(): void {
     })
 }
 
-export function init13(): void {
+export function init17(): void {
+    Object.defineProperty(Reparation.prototype,"reparationDetail",{
+        set:function(value:any){
+            if (value && !(value instanceof Array))
+                throw new Error(JSON.stringify(value) +"cannot be casted to reparationDetail:ReparationDetail[]");
+            for (let i =0;i<(value||[]).length;i++){
+                if(value[i] instanceof ReparationDetail || !value[i]){}
+                else if (typeof value[i]!= 'object' )
+                    throw new Error(JSON.stringify(value[i]) +" cannot be casted to ReparationDetail");
+                else value[i]=Object.assign(new ReparationDetail(),value[i]);
+            }
+            Object.defineProperty(this,"reparationDetail",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init18(): void {
+    Object.defineProperty(Reparation.prototype,"voiture",{
+        set:function(value:any){
+            if(value instanceof Voiture || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to voiture:Voiture");
+            else value=Object.assign(new Voiture(),value);
+            Object.defineProperty(this,"voiture",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init19(): void {
     Object.defineProperty(Resource.prototype,"activity",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -229,7 +325,7 @@ export function init13(): void {
     })
 }
 
-export function init14(): void {
+export function init20(): void {
     Object.defineProperty(Voiture.prototype,"modelVoiture",{
         set:function(value:any){
             if(value instanceof ModelVoiture || !value){}
@@ -245,7 +341,23 @@ export function init14(): void {
     })
 }
 
-export function init15(): void {
+export function init21(): void {
+    Object.defineProperty(Voiture.prototype,"client",{
+        set:function(value:any){
+            if(value instanceof Client || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to client:Client");
+            else value=Object.assign(new Client(),value);
+            Object.defineProperty(this,"client",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init22(): void {
     Object.defineProperty(Voiture.prototype,"reparation",{
         set:function(value:any){
             if (value && !(value instanceof Array))

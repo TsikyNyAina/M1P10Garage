@@ -1,3 +1,4 @@
+export function swaggerIgnore(target:any,propertyKey:PropertyKey,index?:number):void{}
 export function cast(target:any,propertyKey:PropertyKey,index?:number):void{}
 export function json(callback:Function,name?:string){
     return function (target:any,propertyKey:PropertyKey):void {}

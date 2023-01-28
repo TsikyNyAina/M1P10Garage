@@ -2,18 +2,19 @@
 import { Db, ObjectId } from "mongodb";
 import { Entity } from "./Entity";
 
-import { cast } from "../decorator";
+import { cast, swaggerIgnore } from "../decorator";
 import { Voiture } from "./Voiture";
+import { assignArray } from "../util";
 
 export class Client extends Entity {
-    name: String;
-    email: String;
-    phoneNumber: String;
-    mdp: String;
-    @cast voiture: Voiture[];
-
-    async save(db: Db) {
-        return Object.assign(this, await db.collection("client").insertOne({
+    name: string;
+    email: string;
+    phoneNumber: string;
+    mdp: string;
+    @swaggerIgnore @cast voiture:Voiture[];
+    
+    async save(db:Db){
+        return Object.assign(this,await db.collection("client").insertOne({
             name: this.name,
             email: this.email,
             phone_number: this.phoneNumber,
@@ -25,22 +26,22 @@ export class Client extends Entity {
         const relationVoiture = {
             $lookup: {
                 from: "voiture",
-                localField: `$_id`,
-                foreignField: `$clientId`,
+                localField: `_id`,
+                foreignField: `clientId`,
                 as: "voiture",
                 pipeline: [
                     {
                         $lookup: {
                             from: "reparation",
-                            localField: `$_id`,
-                            foreignField: `$voitureId`,
+                            localField: `_id`,
+                            foreignField: `voitureId`,
                             as: "reparation",
                         }
                     }
                 ],
             },
-        };
-        return collection.aggregate([relationVoiture, ...pipeline])
+        }; 
+        return  collection.aggregate([relationVoiture,...pipeline]).toArray().then(m=>assignArray(Client,m))
     }
     async update(db: Db) {
         const collection = db.collection("client");
@@ -59,8 +60,8 @@ export class Client extends Entity {
         return collection.deleteOne({ _id: this.id })
     }
 
-    static async getById(db: Db, id: string) {
-        return await Client.getAll(db, [
+    static getById(db: Db, id: string) {
+        return Client.getAll(db, [
             {
                 $match: {
                     _id: ObjectId.createFromHexString(id)

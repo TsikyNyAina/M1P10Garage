@@ -4,6 +4,8 @@ import {MarquePieceController} from "../controller/MarquePiece.controller";
 import {MarquePieceModelVoitureController} from "../controller/MarquePieceModelVoiture.controller";
 import {MarqueVoitureController} from "../controller/MarqueVoiture.controller";
 import {ModelVoitureController} from "../controller/ModelVoiture.controller";
+import {ResponsableController} from "../controller/Responsable.controller";
+import {VoitureController} from "../controller/Voiture.controller";
 
 export function init0(): void {
     Object.defineProperty(ClientController.prototype,"rest",{
@@ -15,6 +17,18 @@ export function init0(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)
@@ -78,6 +92,18 @@ export function init1(): void {
                 }
             });
 
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.post("",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -129,6 +155,18 @@ export function init2(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)
@@ -192,6 +230,18 @@ export function init3(): void {
                 }
             });
 
+            router.get("/:option",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.post("",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -249,6 +299,18 @@ export function init4(): void {
                 }
             });
 
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.post("",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -285,6 +347,132 @@ export function init4(): void {
                 }
             });
             app.use("/modelVoiture",router);
+        },
+        configurable:true
+    });
+}
+
+export function init5(): void {
+    Object.defineProperty(ResponsableController.prototype,"rest",{
+        value:function(app:Express){
+            const router=Router();
+            router.get("/:option",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.option);
+                try{
+                    await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getOne as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.post("",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.body);
+                try{
+                    await (this.save as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.put("",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.body);
+                try{
+                    await (this.update as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.delete("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.delete as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+            app.use("/responsableController",router);
+        },
+        configurable:true
+    });
+}
+
+export function init6(): void {
+    Object.defineProperty(VoitureController.prototype,"rest",{
+        value:function(app:Express){
+            const router=Router();
+            router.get("/:option",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.option);
+                try{
+                    await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.post("",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.body);
+                try{
+                    await (this.save as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.put("",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.body);
+                try{
+                    await (this.update as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.delete("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.delete as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+            app.use("/voiture",router);
         },
         configurable:true
     });

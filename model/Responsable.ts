@@ -3,10 +3,10 @@ import { Db, ObjectId } from "mongodb";
 import { Entity } from "./Entity";
 
 export class Responsable extends Entity {
-    name: String;
-    email: String;
+    name: string;
+    email: string;
     type: ResponsableType;
-    mdp: String;
+    mdp: string;
     
     async save(db:Db){
         return await db.collection("responsable").insertOne({
