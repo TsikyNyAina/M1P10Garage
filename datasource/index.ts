@@ -6,12 +6,13 @@ dotenv.config()
 
  
 const uri=process.env.DB_URI;
+let uri1 = 'mongodb+srv://vaika:vaika@vaika.pzzbpw6.mongodb.net/?retryWrites=true&w=majority';
 
 export class MongoClientWithDatabase extends MongoClient{
     currentDb:Db
 }
 
-export const connect:()=>Promise<MongoClientWithDatabase>=()=>new MongoClient(uri as string,{
+export const connect:()=>Promise<MongoClientWithDatabase>=()=>new MongoClient(uri1 as string,{
     
 
 }).connect().then((client)=>{
