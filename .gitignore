@@ -1,6 +1,5 @@
 node_modules/
-dist/
-datasource/
+dist/ 
 package.json
 package-lock.json
 .env
