@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "paths": {
-        "/clientController/{option}": {
+        "/clientController/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -136,7 +136,7 @@
                 }
             }
         },
-        "/marquePiece/{option}": {
+        "/marquePiece/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -309,7 +309,7 @@
                 }
             }
         },
-        "/marquePieceModelVoiture/{option}": {
+        "/marquePieceModelVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -452,7 +452,7 @@
                 }
             }
         },
-        "/marqueVoiture/{option}": {
+        "/marqueVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -462,7 +462,21 @@
                             "type": "object",
                             "example": "\"[{\\\"$match\\\":{}}]\""
                         }
-                    },
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ]
+            }
+        },
+        "/marqueVoiture/{option}": {
+            "get": {
+                "parameters": [
                     {
                         "in": "path",
                         "name": "id",
@@ -557,7 +571,7 @@
                 ]
             }
         },
-        "/modelVoiture/{option}": {
+        "/modelVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -704,7 +718,7 @@
                 }
             }
         },
-        "/payement/{option}": {
+        "/payement/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -908,7 +922,7 @@
                 ]
             }
         },
-        "/reparation/{option}": {
+        "/reparation/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1068,7 +1082,7 @@
                 ]
             }
         },
-        "/reparationDetail/{option}": {
+        "/reparationDetail/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1210,7 +1224,7 @@
                 ]
             }
         },
-        "/responsableController/{option}": {
+        "/responsableController/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1345,7 +1359,7 @@
                 }
             }
         },
-        "/voiture/{option}": {
+        "/voiture/option/{option}": {
             "get": {
                 "parameters": [
                     {

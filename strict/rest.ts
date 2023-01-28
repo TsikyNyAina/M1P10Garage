@@ -14,7 +14,7 @@ export function init0(): void {
     Object.defineProperty(ClientController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -83,7 +83,7 @@ export function init1(): void {
     Object.defineProperty(MarquePieceController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -152,7 +152,7 @@ export function init2(): void {
     Object.defineProperty(MarquePieceModelVoitureController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -221,7 +221,7 @@ export function init3(): void {
     Object.defineProperty(MarqueVoitureController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -290,7 +290,7 @@ export function init4(): void {
     Object.defineProperty(ModelVoitureController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -359,7 +359,7 @@ export function init5(): void {
     Object.defineProperty(PayementController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -416,7 +416,7 @@ export function init6(): void {
     Object.defineProperty(ReparationController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -473,7 +473,7 @@ export function init7(): void {
     Object.defineProperty(ReparationDetailController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -530,7 +530,7 @@ export function init8(): void {
     Object.defineProperty(ResponsableController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
@@ -599,7 +599,7 @@ export function init9(): void {
     Object.defineProperty(VoitureController.prototype,"rest",{
         value:function(app:Express){
             const router=Router();
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/option/:option",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.option);
