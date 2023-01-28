@@ -76,11 +76,6 @@ export class Voiture extends Entity{
                 },
             },
         ];
-
-
-
-
-
         return  collection.aggregate([...clientRelation,...reparationRelation,...pipeline])
     }
 

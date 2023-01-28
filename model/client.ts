@@ -1,27 +1,54 @@
-import { ClientSchema } from "../collection";
-import { Entity } from "./entity";
+import { Db, ObjectId } from "mongodb";
+import { Entity } from "./Entity";
+
+import { cast } from "../decorator";
+import { Voiture } from "./Voiture";
 
 export class Client extends Entity {
     name: String;
     email: String;
     phone_number: String;
     mdp: String;
-    async create() {
-        const rep = await ClientSchema.create(this)
-        return Object.assign(this, { ...rep, id: rep?.id })
+    @cast voiture:Voiture[];
+
+    static async save(db:Db,client : Partial<Client>){
+        return await db.collection("client").insertOne({
+            name: client.name,
+            email: client.email,
+            phone_number : client.phone_number,
+            mdp: client.mdp
+        })
     }
-    static async find(filter: any = {}) {
-        let rep = new Array();
-        for (let a of (await ClientSchema.find(filter)) || []) {
-            rep.push(Object.assign(new Client(), {id: a.id, name: a.name, email: a.email, phone_number: a.phone_number, mdp:a.mdp }))
-        }
-        return rep;
+
+    getAll(db:Db,pipeline:Array<any>=new Array()){
+        const collection=db.collection("client");
+
+        const relation={
+            $lookup:{
+                from: "voiture",
+                let: { r: `$_id` },
+                as: "voiture",
+                pipeline:[
+                    {
+                        $match:{
+                            $expr:{
+                                $eq:[`$clientId`,"$$r"]
+                            }
+                        }
+                    }
+                ],
+            },
+
+        }; 
+
+
+        return  collection.aggregate([relation,...pipeline])
     }
-    static async findOne(filter: any = {}) {
-        let a = await ClientSchema.findOne(filter);
-        return Object.assign(new Client(), {id: a.id, name: a.name, email: a.email, phone_number: a.phone_number, mdp:a.mdp })
+
+    getOne(db:Db,query:any,pipeline:Array<any>=new Array()){
+        const collection=db.collection("client");
+        return collection.aggregate([{$match:query},{$limit:1},...pipeline]).next().then(val=>val)
     }
-    constructor() {
-        super()
-    }
+
+    
 }

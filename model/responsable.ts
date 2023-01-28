@@ -1,28 +1,29 @@
 import { ResponsableSchema } from "../collection";
-import { Entity } from "./entity";
+import { Db, ObjectId } from "mongodb";
+import { Entity } from "./Entity";
 
 export class Responsable extends Entity {
     name: String;
     email: String;
-    type: String;
+    type: ResponsableType;
     mdp: String;
-    async create() {
-        const rep = await ResponsableSchema.create(this)
-        return Object.assign(this, { ...rep, id: rep?.id })
+    
+    static async save(db:Db,client : Partial<Responsable>){
+        return await db.collection("responsable").insertOne({
+            name: client.name,
+            email: client.email,
+            type : client.type,
+            mdp: client.mdp
+        })
     }
-    static async find(filter: any = {}) {
-        let rep = new Array();
-        for (let a of (await ResponsableSchema.find(filter)) || []) {
-            rep.push(Object.assign(new ResponsableSchema(), {id: a.id, name: a.name, email: a.email, type: a.type, mdp:a.mdp }))
-        }
-        return rep;
+
+    getOne(db:Db,query:any,pipeline:Array<any>=new Array()){
+        const collection=db.collection("responsable");
+        return collection.aggregate([{$match:query},{$limit:1},...pipeline]).next().then(val=>val)
     }
-    static async findOne(filter: any = {}) {
-        let a = await ResponsableSchema.findOne(filter);
-        if(!a) return
-        return Object.assign(new Responsable(), {id: a.id, name: a.name, email: a.email, type: a.type, mdp:a.mdp })
-    }
-    constructor() {
-        super()
-    }
+}
+
+export enum ResponsableType{
+    finacier,
+    atelier
 }
