@@ -99,7 +99,43 @@ export class Voiture extends Entity{
                 },
             },
         ];
-        return  collection.aggregate([...clientRelation,...reparationRelation,...pipeline]).toArray().then(m=>assignArray(Voiture,m))
+        const modelVoitureRelation=[
+            {
+                $lookup:{
+                    from: "modelVoiture",
+                    localField:"modelVoitureId",
+                    as: "modelVoiture",
+                    foreignField:"_id",
+                    pipeline:[
+                        {
+                            $lookup:{
+                                from:"marqueVoiture",
+                                as:"marqueVoiture",
+                                localField:"marqueVoitureId",
+                                foreignField:"_id",
+                            }
+                        },
+                        {
+                            $addFields:{
+                                marqueVoiture:{
+                                    $arrayElemAt:["$marqueVoiture",0]
+                                }
+                            }
+                        }
+                         
+                    ]
+                },
+                
+            },
+            {
+                $addFields:{
+                    modelVoiture:{
+                        $arrayElemAt:["$modelVoiture",0]
+                    }
+                }
+            }
+        ]
+        return  collection.aggregate([...modelVoitureRelation,...clientRelation,...reparationRelation,...pipeline]).toArray().then(m=>assignArray(Voiture,m))
     }
     async update(db:Db){    
         const collection=db.collection("voiture");
