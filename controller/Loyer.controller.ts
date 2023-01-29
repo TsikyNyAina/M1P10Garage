@@ -16,7 +16,7 @@ export class LoyerController{
         let client ;
         try {
             client=await connect();
-            res.json(await Loyer.getAll(client.currentDb,option as any))
+            res.json(await Loyer.getAll1(client.currentDb,option as any))
         } catch (error:any) {
             res.status(500).send(error.message)
         }

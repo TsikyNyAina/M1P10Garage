@@ -28,6 +28,19 @@ export class Loyer extends Entity{
         ])
     }
     
+    static getAll1(db:Db,pipeline=new Array()){
+        let groupby = [
+            {
+               $group: {
+                  _id: "$datePayement",
+                  total: { $sum: "$montant" }
+               }
+            }
+         ];
+        const collection= db.collection("loyer");
+        return  collection.aggregate([...groupby,...pipeline]).toArray().then()
+    }
+
     static getAll(db:Db,pipeline=new Array()){
         const collection= db.collection("loyer");
         return  collection.aggregate([...pipeline]).toArray().then(m=>assignArray(Loyer,m))
