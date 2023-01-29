@@ -4,6 +4,7 @@ import { MarquePiece } from "./MarquePiece";
 import { cast, swaggerIgnore } from "../decorator";
 import { Reparation } from "./Reparation";
 import { assignArray } from "../util";
+import { idToString } from "../Parameter";
 export class ReparationDetail extends Entity{
     reparationId:ObjectId;
     marquePieceId:ObjectId;
@@ -74,8 +75,8 @@ export class ReparationDetail extends Entity{
                         $arrayElemAt:["$marquePiece",0]
                     }
                 }
-            }
-            
+            },
+            idToString
         ];
         return collection.aggregate([...detailReparationRelation,...pipeline]).toArray().then(m=>assignArray(ReparationDetail,m))
     }

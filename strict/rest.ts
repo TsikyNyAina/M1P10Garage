@@ -73,7 +73,7 @@ export function init0(): void {
                     res.status(500).send(error?.message||error)
                 }
             });
-            app.use("/clientController",router);
+            app.use("/client",router);
         },
         configurable:true
     });
@@ -233,7 +233,7 @@ export function init3(): void {
                 }
             });
 
-            router.get("/:option",async (req:Request,res:Response)=>{
+            router.get("/:id",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
                 arg.push(req.params.id);
@@ -371,6 +371,18 @@ export function init5(): void {
                 }
             });
 
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.post("",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -422,6 +434,18 @@ export function init6(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)
@@ -509,6 +533,18 @@ export function init7(): void {
                 }
             });
 
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.delete("/:id",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -589,7 +625,7 @@ export function init8(): void {
                     res.status(500).send(error?.message||error)
                 }
             });
-            app.use("/responsableController",router);
+            app.use("/responsable",router);
         },
         configurable:true
     });
@@ -605,6 +641,18 @@ export function init9(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/:id",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.id);
+                try{
+                    await (this.getById as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)

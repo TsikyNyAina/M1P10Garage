@@ -6,7 +6,9 @@ import { ReparationStatus } from "./ReparationStatus";
 import { ReparationDetail } from "./ReparationDetail";
 import { cast, swaggerIgnore } from "../decorator";
 import { assignArray } from "../util";
+import { idToString } from "../Parameter";
 import { detailReparationRelation } from "../relation";
+
 
 
 
@@ -24,7 +26,24 @@ export class Reparation extends Entity {
     
     @cast @swaggerIgnore reparationDetail:ReparationDetail[];
     @cast @swaggerIgnore voiture:Voiture;
-    
+    constructor(){
+        super();
+        Object.defineProperty(Entity.prototype,"voitureId",{
+            set:function(id){
+                if(typeof id==="string")
+                    id=ObjectId.createFromHexString(id);
+                Object.defineProperty(this,"voitureId",{
+                    value:id,
+                    enumerable:true,
+                    configurable:true
+                })
+            },
+            enumerable:true,
+            configurable:true
+        });
+        this.startDate=new Date();
+        this.status=ReparationStatus.PRISE_EN_MAIN
+    }
     async save(db:Db){
         const collection=db.collection("reparation");
         return Object.assign(this,await collection.insertOne({
@@ -39,7 +58,7 @@ export class Reparation extends Entity {
     }
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("reparation");
-        
+         
         return collection.aggregate([...detailReparationRelation,...pipeline]).toArray().then(m=>assignArray(Reparation,m))
     }
     async update(db:Db){    

@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "paths": {
-        "/clientController/option/{option}": {
+        "/client/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -23,7 +23,7 @@
                 ]
             }
         },
-        "/clientController/{id}": {
+        "/client/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -68,7 +68,7 @@
                 ]
             }
         },
-        "/clientController": {
+        "/client": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -474,7 +474,7 @@
                 ]
             }
         },
-        "/marqueVoiture/{option}": {
+        "/marqueVoiture/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -482,6 +482,30 @@
                         "name": "id",
                         "schema": {
                             "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "MarqueVoitureController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
                         }
                     }
                 ],
@@ -543,32 +567,6 @@
                         }
                     }
                 }
-            }
-        },
-        "/marqueVoiture/{id}": {
-            "delete": {
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "properties": {
-                                "_bsontype": {
-                                    "type": "object",
-                                    "example": "\"ObjectID\""
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "tags": [
-                    "MarqueVoitureController"
-                ]
             }
         },
         "/modelVoiture/option/{option}": {
@@ -740,6 +738,51 @@
                 ]
             }
         },
+        "/payement/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "PayementController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "PayementController"
+                ]
+            }
+        },
         "/payement": {
             "post": {
                 "parameters": [],
@@ -896,7 +939,48 @@
                 }
             }
         },
-        "/payement/{id}": {
+        "/reparation/option/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ReparationController"
+                ]
+            }
+        },
+        "/reparation/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ReparationController"
+                ]
+            },
             "delete": {
                 "parameters": [
                     {
@@ -909,28 +993,6 @@
                                     "example": "\"ObjectID\""
                                 }
                             }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "tags": [
-                    "PayementController"
-                ]
-            }
-        },
-        "/reparation/option/{option}": {
-            "get": {
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "option",
-                        "schema": {
-                            "type": "object",
-                            "example": "\"[{\\\"$match\\\":{}}]\""
                         }
                     }
                 ],
@@ -1056,32 +1118,6 @@
                 }
             }
         },
-        "/reparation/{id}": {
-            "delete": {
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "properties": {
-                                "_bsontype": {
-                                    "type": "object",
-                                    "example": "\"ObjectID\""
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "tags": [
-                    "ReparationController"
-                ]
-            }
-        },
         "/reparationDetail/option/{option}": {
             "get": {
                 "parameters": [
@@ -1199,6 +1235,25 @@
             }
         },
         "/reparationDetail/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ReparationDetailController"
+                ]
+            },
             "delete": {
                 "parameters": [
                     {
@@ -1224,7 +1279,7 @@
                 ]
             }
         },
-        "/responsableController/option/{option}": {
+        "/responsable/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1246,7 +1301,7 @@
                 ]
             }
         },
-        "/responsableController/{id}": {
+        "/responsable/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1291,7 +1346,7 @@
                 ]
             }
         },
-        "/responsableController": {
+        "/responsable": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1368,6 +1423,51 @@
                         "schema": {
                             "type": "object",
                             "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "VoitureController"
+                ]
+            }
+        },
+        "/voiture/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "VoitureController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
                         }
                     }
                 ],
@@ -1467,32 +1567,6 @@
                         }
                     }
                 }
-            }
-        },
-        "/voiture/{id}": {
-            "delete": {
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "properties": {
-                                "_bsontype": {
-                                    "type": "object",
-                                    "example": "\"ObjectID\""
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "tags": [
-                    "VoitureController"
-                ]
             }
         }
     }
