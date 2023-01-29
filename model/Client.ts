@@ -18,7 +18,7 @@ export class Client extends Entity {
         return Object.assign(this,await db.collection("client").insertOne({
             name: this.name,
             email: this.email,
-            phone_number: this.phoneNumber,
+            phoneNumber: this.phoneNumber,
             mdp: this.mdp
         }))
     }
