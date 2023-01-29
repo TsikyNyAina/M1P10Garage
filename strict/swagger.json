@@ -104,41 +104,6 @@
                                     },
                                     "prixUnitaire": {
                                         "type": "number"
-                                    },
-                                    "marquePiece": {
-                                        "properties": {
-                                            "marquePieceName": {
-                                                "type": "string"
-                                            },
-                                            "modelVoiture": {
-                                                "type": "array",
-                                                "items": {
-                                                    "properties": {
-                                                        "marqueVoitureId": {
-                                                            "properties": {
-                                                                "_bsontype": {
-                                                                    "type": "object",
-                                                                    "example": "\"ObjectID\""
-                                                                }
-                                                            }
-                                                        },
-                                                        "modelName": {
-                                                            "type": "string"
-                                                        },
-                                                        "marqueVoiture": {
-                                                            "properties": {
-                                                                "marqueName": {
-                                                                    "type": "string"
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "touteModelVoiture": {
-                                                "type": "boolean"
-                                            }
-                                        }
                                     }
                                 }
                             }
@@ -181,41 +146,6 @@
                                     },
                                     "prixUnitaire": {
                                         "type": "number"
-                                    },
-                                    "marquePiece": {
-                                        "properties": {
-                                            "marquePieceName": {
-                                                "type": "string"
-                                            },
-                                            "modelVoiture": {
-                                                "type": "array",
-                                                "items": {
-                                                    "properties": {
-                                                        "marqueVoitureId": {
-                                                            "properties": {
-                                                                "_bsontype": {
-                                                                    "type": "object",
-                                                                    "example": "\"ObjectID\""
-                                                                }
-                                                            }
-                                                        },
-                                                        "modelName": {
-                                                            "type": "string"
-                                                        },
-                                                        "marqueVoiture": {
-                                                            "properties": {
-                                                                "marqueName": {
-                                                                    "type": "string"
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "touteModelVoiture": {
-                                                "type": "boolean"
-                                            }
-                                        }
                                     }
                                 }
                             }

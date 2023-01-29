@@ -2,7 +2,7 @@ import { Db, ObjectId } from "mongodb";
 import { Entity } from "./Entity";
 import { assignArray } from "../util";
 import { MarquePiece } from "./MarquePiece";
-import { cast } from "../decorator";
+import { cast, swaggerIgnore } from "../decorator";
 import { relationMarquePiece } from "../relation";
 
 export class AchatPiece extends Entity {
@@ -10,7 +10,7 @@ export class AchatPiece extends Entity {
     quantity: number;
     marquePieceId: ObjectId;
     prixUnitaire: number;
-    @cast marquePiece:MarquePiece;
+    @swaggerIgnore @cast marquePiece:MarquePiece;
 
     async save(db: Db) {
         const collection = db.collection("voiture")
