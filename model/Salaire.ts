@@ -1,14 +1,18 @@
 import { Entity } from "./Entity";
 import { Db, ObjectId } from "mongodb";
 import { assignArray } from "../util";
+import { Responsable } from "./Responsable";
+import { cast } from "../decorator";
+import { relationResponsable } from "../relation";
 
 
 
 export class Salaire extends Entity{
     datePayement: Date;
-    montant: Number;
+    mois:Date;
+    montant: number;
     responsableId: ObjectId;
-    
+    @cast responsable:Responsable;
 
 
     async save(db:Db){
@@ -16,7 +20,8 @@ export class Salaire extends Entity{
         return Object.assign(this,await collection.insertOne({
             datePayement:this.datePayement,
             montant:this.montant,
-            responsableId:this.responsableId
+            responsableId:this.responsableId,
+            mois:this.mois
         }));
     }
 
@@ -32,7 +37,8 @@ export class Salaire extends Entity{
     
     static getAll(db:Db,pipeline=new Array()){
         const collection= db.collection("salaire");
-        return  collection.aggregate([...pipeline]).toArray().then(m=>assignArray(Salaire,m))
+        
+        return  collection.aggregate([...relationResponsable,...pipeline]).toArray().then(m=>assignArray(Salaire,m))
     }
     async update(db:Db){    
         const collection=db.collection("salaire");
@@ -40,7 +46,8 @@ export class Salaire extends Entity{
             $set:{
                 datePayement:this.datePayement,
                 montant:this.montant,
-                responsableId:this.responsableId
+                responsableId:this.responsableId,
+                mois:this.mois
             }
         })
         return this;
@@ -51,6 +58,19 @@ export class Salaire extends Entity{
     }
     constructor(){
         super();
+        Object.defineProperty(this,"responsableId",{
+            set:function(id){
+                if(typeof id==="string")
+                    id=ObjectId.createFromHexString(id);
+                Object.defineProperty(this,"responsableId",{
+                    value:id,
+                    enumerable:true,
+                    configurable:true
+                })
+            },
+            enumerable:true,
+            configurable:true
+        })
     }
 
 

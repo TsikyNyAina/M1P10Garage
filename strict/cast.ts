@@ -600,6 +600,22 @@ export function init37(): void {
 }
 
 export function init38(): void {
+    Object.defineProperty(Salaire.prototype,"responsable",{
+        set:function(value:any){
+            if(value instanceof Responsable || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to responsable:Responsable");
+            else value=Object.assign(new Responsable(),value);
+            Object.defineProperty(this,"responsable",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init39(): void {
     Object.defineProperty(Voiture.prototype,"modelVoiture",{
         set:function(value:any){
             if(value instanceof ModelVoiture || !value){}
@@ -615,7 +631,7 @@ export function init38(): void {
     })
 }
 
-export function init39(): void {
+export function init40(): void {
     Object.defineProperty(Voiture.prototype,"client",{
         set:function(value:any){
             if(value instanceof Client || !value){}
@@ -631,7 +647,7 @@ export function init39(): void {
     })
 }
 
-export function init40(): void {
+export function init41(): void {
     Object.defineProperty(Voiture.prototype,"reparation",{
         set:function(value:any){
             if (value && !(value instanceof Array))

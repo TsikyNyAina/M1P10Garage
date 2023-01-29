@@ -8,12 +8,13 @@ import { assignArray } from "../util";
 export class Loyer extends Entity{
     datePayement: Date;
     montant: Number;
-
+    mois:Date;
     async save(db:Db){
         const collection= db.collection("loyer")
         return Object.assign(this,await collection.insertOne({
             datePayement:this.datePayement,
-            montant:this.montant
+            montant:this.montant,
+            mois:this.mois
         }));
     }
 
@@ -36,7 +37,8 @@ export class Loyer extends Entity{
         await collection.updateOne({_id:this.id},{
             $set:{
                 datePayement:this.datePayement,
-                montant:this.montant
+                montant:this.montant,
+                mois:this.mois
             }
         })
         return this;

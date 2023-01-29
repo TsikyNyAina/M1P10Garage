@@ -451,6 +451,13 @@
                                     },
                                     "montant": {
                                         "properties": {}
+                                    },
+                                    "mois": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -482,6 +489,13 @@
                                     },
                                     "montant": {
                                         "properties": {}
+                                    },
+                                    "mois": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1972,14 +1986,37 @@
                                             }
                                         }
                                     },
+                                    "mois": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
                                     "montant": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "responsableId": {
                                         "properties": {
                                             "_bsontype": {
                                                 "type": "object",
                                                 "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "responsable": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "properties": {}
+                                            },
+                                            "mdp": {
+                                                "type": "string"
                                             }
                                         }
                                     }
@@ -2011,14 +2048,37 @@
                                             }
                                         }
                                     },
+                                    "mois": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
                                     "montant": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "responsableId": {
                                         "properties": {
                                             "_bsontype": {
                                                 "type": "object",
                                                 "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "responsable": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "properties": {}
+                                            },
+                                            "mdp": {
+                                                "type": "string"
                                             }
                                         }
                                     }

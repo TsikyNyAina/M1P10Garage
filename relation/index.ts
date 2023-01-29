@@ -378,3 +378,20 @@ export const relationMarquePiece=[
         }
     }
 ]
+export const  relationResponsable=[
+    {
+        $lookup:{
+            from :"responsable",
+            as :"responsable",
+            localField:"responsableId",
+            foreignField:"_id"
+        }
+    },
+    {
+        $addFields:{
+            responsable:{
+                $arrayElemAt:["$responsable",0]
+            }
+        }
+    }
+];
