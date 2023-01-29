@@ -232,6 +232,13 @@ export const detailReparationRelation=[
             localField:"voitureId",
             foreignField:"_id"
         }
+    },
+    {
+        $addFields:{
+            voiture:{
+                $arrayElemAt:["$voiture",0]
+            }
+        }
     }
 ];
 
