@@ -363,3 +363,18 @@ export const modelVoitureRelation=[
         }
     }
 ];
+export const relationMarquePiece=[
+    {
+        $lookup:{
+            from:"marquePiece",
+            as:"marquePiece",
+            localField:"marquePieceId",
+            foreignField:"_id"
+        },
+        $addFields:{
+            marquePiece:{
+                $arrayElemAt:["$marquePiece",0]
+            }
+        }
+    }
+]

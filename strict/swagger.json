@@ -1,6 +1,229 @@
 {
     "openapi": "3.0.3",
     "paths": {
+        "/achatPiece/option/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ]
+            }
+        },
+        "/achatPiece/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ]
+            }
+        },
+        "/achatPiece": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dateAchat": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "quantity": {
+                                        "properties": {}
+                                    },
+                                    "marquePieceId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "prixUnitaire": {
+                                        "properties": {}
+                                    },
+                                    "marquePiece": {
+                                        "properties": {
+                                            "marquePieceName": {
+                                                "type": "string"
+                                            },
+                                            "modelVoiture": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "touteModelVoiture": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "dateAchat": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "quantity": {
+                                        "properties": {}
+                                    },
+                                    "marquePieceId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "prixUnitaire": {
+                                        "properties": {}
+                                    },
+                                    "marquePiece": {
+                                        "properties": {
+                                            "marquePieceName": {
+                                                "type": "string"
+                                            },
+                                            "modelVoiture": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "touteModelVoiture": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/client/option/{option}": {
             "get": {
                 "parameters": [
@@ -128,6 +351,137 @@
                                     },
                                     "mdp": {
                                         "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/loyer/option/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ]
+            }
+        },
+        "/loyer/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ]
+            }
+        },
+        "/loyer": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "datePayement": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "montant": {
+                                        "properties": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "datePayement": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "montant": {
+                                        "properties": {}
                                     }
                                 }
                             }
@@ -407,6 +761,63 @@
                                                 "example": "\"ObjectID\""
                                             }
                                         }
+                                    },
+                                    "marquePiece": {
+                                        "properties": {
+                                            "marquePieceName": {
+                                                "type": "string"
+                                            },
+                                            "modelVoiture": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "touteModelVoiture": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "modelVoiture": {
+                                        "properties": {
+                                            "marqueVoitureId": {
+                                                "properties": {
+                                                    "_bsontype": {
+                                                        "type": "object",
+                                                        "example": "\"ObjectID\""
+                                                    }
+                                                }
+                                            },
+                                            "modelName": {
+                                                "type": "string"
+                                            },
+                                            "marqueVoiture": {
+                                                "properties": {
+                                                    "marqueName": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -442,6 +853,63 @@
                                             "_bsontype": {
                                                 "type": "object",
                                                 "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    },
+                                    "marquePiece": {
+                                        "properties": {
+                                            "marquePieceName": {
+                                                "type": "string"
+                                            },
+                                            "modelVoiture": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "marqueVoitureId": {
+                                                            "properties": {
+                                                                "_bsontype": {
+                                                                    "type": "object",
+                                                                    "example": "\"ObjectID\""
+                                                                }
+                                                            }
+                                                        },
+                                                        "modelName": {
+                                                            "type": "string"
+                                                        },
+                                                        "marqueVoiture": {
+                                                            "properties": {
+                                                                "marqueName": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "touteModelVoiture": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    },
+                                    "modelVoiture": {
+                                        "properties": {
+                                            "marqueVoitureId": {
+                                                "properties": {
+                                                    "_bsontype": {
+                                                        "type": "object",
+                                                        "example": "\"ObjectID\""
+                                                    }
+                                                }
+                                            },
+                                            "modelName": {
+                                                "type": "string"
+                                            },
+                                            "marqueVoiture": {
+                                                "properties": {
+                                                    "marqueName": {
+                                                        "type": "string"
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -1406,6 +1874,153 @@
                                     },
                                     "mdp": {
                                         "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/salaire/option/{option}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "option",
+                        "schema": {
+                            "type": "object",
+                            "example": "\"[{\\\"$match\\\":{}}]\""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ]
+            }
+        },
+        "/salaire/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ]
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "properties": {
+                                "_bsontype": {
+                                    "type": "object",
+                                    "example": "\"ObjectID\""
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ]
+            }
+        },
+        "/salaire": {
+            "post": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "datePayement": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "montant": {
+                                        "properties": {}
+                                    },
+                                    "responsableId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "datePayement": {
+                                        "properties": {
+                                            "getVarDate": {
+                                                "properties": {}
+                                            }
+                                        }
+                                    },
+                                    "montant": {
+                                        "properties": {}
+                                    },
+                                    "responsableId": {
+                                        "properties": {
+                                            "_bsontype": {
+                                                "type": "object",
+                                                "example": "\"ObjectID\""
+                                            }
+                                        }
                                     }
                                 }
                             }

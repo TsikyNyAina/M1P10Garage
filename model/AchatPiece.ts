@@ -1,26 +1,30 @@
 import { Db, ObjectId } from "mongodb";
 import { Entity } from "./Entity";
 import { assignArray } from "../util";
+import { MarquePiece } from "./MarquePiece";
+import { cast } from "../decorator";
+import { relationMarquePiece } from "../relation";
 
 export class AchatPiece extends Entity {
     dateAchat: Date;
-    Quantite: Number;
-    MarquePieceId: ObjectId;
-    PU: Number;
+    quantity: Number;
+    marquePieceId: ObjectId;
+    prixUnitaire: Number;
+    @cast marquePiece:MarquePiece;
 
     async save(db: Db) {
         const collection = db.collection("voiture")
         return Object.assign(this, await collection.insertOne({
             dateAchat: this.dateAchat,
-            Quantite: this.Quantite,
-            MarquePieceId: this.MarquePieceId,
-            PU: this.PU
+            quantity: this.quantity,
+            marquePieceId: this.marquePieceId,
+            prixUnitaire: this.prixUnitaire
         }));
     }
 
     static getAll(db: Db, pipeline = new Array()) {
         const collection = db.collection("achatPiece");
-        return collection.aggregate([...pipeline]).toArray().then(m => assignArray(AchatPiece, m))
+        return collection.aggregate([...relationMarquePiece,...pipeline]).toArray().then(m => assignArray(AchatPiece, m))
     }
 
     static getById(db: Db, id: string) {
@@ -38,9 +42,9 @@ export class AchatPiece extends Entity {
         await collection.updateOne({ _id: this.id }, {
             $set: {
                 dateAchat: this.dateAchat,
-                Quantite: this.Quantite,
-                MarquePieceId: this.MarquePieceId,
-                PU: this.PU
+                quantity: this.quantity,
+                marquePieceId: this.marquePieceId,
+                prixUnitaire: this.prixUnitaire
             }
         })
         return this;
@@ -53,5 +57,18 @@ export class AchatPiece extends Entity {
 
     constructor(){
         super();
+        Object.defineProperty(this,"marquePieceId",{
+            set:function(marquePieceId){
+                if(typeof marquePieceId==="string")
+                    marquePieceId=ObjectId.createFromHexString(marquePieceId);
+                Object.defineProperty(this,"marquePieceId",{
+                    value:marquePieceId,
+                    enumerable:true,
+                    configurable:true
+                })
+            },
+            enumerable:true,
+            configurable:true
+        })
     };
 }
