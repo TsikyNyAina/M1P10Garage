@@ -92,7 +92,7 @@
                                         }
                                     },
                                     "quantity": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "marquePieceId": {
                                         "properties": {
@@ -103,7 +103,7 @@
                                         }
                                     },
                                     "prixUnitaire": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "marquePiece": {
                                         "properties": {
@@ -169,7 +169,7 @@
                                         }
                                     },
                                     "quantity": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "marquePieceId": {
                                         "properties": {
@@ -180,7 +180,7 @@
                                         }
                                     },
                                     "prixUnitaire": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "marquePiece": {
                                         "properties": {
@@ -450,7 +450,7 @@
                                         }
                                     },
                                     "montant": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "mois": {
                                         "properties": {
@@ -488,7 +488,7 @@
                                         }
                                     },
                                     "montant": {
-                                        "properties": {}
+                                        "type": "number"
                                     },
                                     "mois": {
                                         "properties": {

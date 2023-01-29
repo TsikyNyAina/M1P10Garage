@@ -7,7 +7,7 @@ import { assignArray } from "../util";
 
 export class Loyer extends Entity{
     datePayement: Date;
-    montant: Number;
+    montant: number;
     mois:Date;
     async save(db:Db){
         const collection= db.collection("loyer")

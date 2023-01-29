@@ -7,9 +7,9 @@ import { relationMarquePiece } from "../relation";
 
 export class AchatPiece extends Entity {
     dateAchat: Date;
-    quantity: Number;
+    quantity: number;
     marquePieceId: ObjectId;
-    prixUnitaire: Number;
+    prixUnitaire: number;
     @cast marquePiece:MarquePiece;
 
     async save(db: Db) {
