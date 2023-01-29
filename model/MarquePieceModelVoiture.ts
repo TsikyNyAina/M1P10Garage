@@ -2,12 +2,20 @@ import { Db, ObjectId } from "mongodb";
 import { assignArray } from "../util";
 import { Entity } from "./Entity";
 import { relationPiece,modelVoiture } from "../relation";
+import { cast } from "../decorator";
+import { MarquePiece } from "./MarquePiece";
+import { ModelVoiture } from "./ModelVoiture";
 
 
 
 export class MarquePieceModelVoiture extends Entity{ 
     modelVoitureId:ObjectId;
     marquePieceId:ObjectId;
+
+
+    @cast marquePiece:MarquePiece
+    @cast modelVoiture:ModelVoiture
+
     async save(db:Db){
         const collection=db.collection("marquePieceModelVoiture");
         return Object.assign(this,await collection.insertOne({

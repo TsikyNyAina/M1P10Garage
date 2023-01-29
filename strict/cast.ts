@@ -342,6 +342,38 @@ export function init21(): void {
 }
 
 export function init22(): void {
+    Object.defineProperty(MarquePieceModelVoiture.prototype,"marquePiece",{
+        set:function(value:any){
+            if(value instanceof MarquePiece || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to marquePiece:MarquePiece");
+            else value=Object.assign(new MarquePiece(),value);
+            Object.defineProperty(this,"marquePiece",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init23(): void {
+    Object.defineProperty(MarquePieceModelVoiture.prototype,"modelVoiture",{
+        set:function(value:any){
+            if(value instanceof ModelVoiture || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to modelVoiture:ModelVoiture");
+            else value=Object.assign(new ModelVoiture(),value);
+            Object.defineProperty(this,"modelVoiture",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init24(): void {
     Object.defineProperty(ModelVoiture.prototype,"marqueVoiture",{
         set:function(value:any){
             if(value instanceof MarqueVoiture || !value){}
@@ -357,7 +389,7 @@ export function init22(): void {
     })
 }
 
-export function init23(): void {
+export function init25(): void {
     Object.defineProperty(Payement.prototype,"reparation",{
         set:function(value:any){
             if(value instanceof Reparation || !value){}
@@ -373,7 +405,7 @@ export function init23(): void {
     })
 }
 
-export function init24(): void {
+export function init26(): void {
     Object.defineProperty(Reparation.prototype,"reparationDetail",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -393,7 +425,7 @@ export function init24(): void {
     })
 }
 
-export function init25(): void {
+export function init27(): void {
     Object.defineProperty(Reparation.prototype,"voiture",{
         set:function(value:any){
             if(value instanceof Voiture || !value){}
@@ -409,7 +441,7 @@ export function init25(): void {
     })
 }
 
-export function init26(): void {
+export function init28(): void {
     Object.defineProperty(ReparationDetail.prototype,"marquePiece",{
         set:function(value:any){
             if(value instanceof MarquePiece || !value){}
@@ -425,7 +457,7 @@ export function init26(): void {
     })
 }
 
-export function init27(): void {
+export function init29(): void {
     Object.defineProperty(ReparationDetail.prototype,"reparation",{
         set:function(value:any){
             if(value instanceof Reparation || !value){}
@@ -441,7 +473,7 @@ export function init27(): void {
     })
 }
 
-export function init28(): void {
+export function init30(): void {
     Object.defineProperty(Resource.prototype,"activity",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -461,7 +493,7 @@ export function init28(): void {
     })
 }
 
-export function init29(): void {
+export function init31(): void {
     Object.defineProperty(Voiture.prototype,"modelVoiture",{
         set:function(value:any){
             if(value instanceof ModelVoiture || !value){}
@@ -477,7 +509,7 @@ export function init29(): void {
     })
 }
 
-export function init30(): void {
+export function init32(): void {
     Object.defineProperty(Voiture.prototype,"client",{
         set:function(value:any){
             if(value instanceof Client || !value){}
@@ -493,7 +525,7 @@ export function init30(): void {
     })
 }
 
-export function init31(): void {
+export function init33(): void {
     Object.defineProperty(Voiture.prototype,"reparation",{
         set:function(value:any){
             if (value && !(value instanceof Array))
