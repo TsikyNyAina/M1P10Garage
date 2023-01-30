@@ -2,6 +2,7 @@ import { Entity } from "./Entity";
 import { Db, ObjectId } from "mongodb";
 import { Client } from "./Client";
 import { assignArray } from "../util";
+import { depense } from "../relation";
 
 
 
@@ -38,7 +39,7 @@ export class Loyer extends Entity{
             }
          ];
         const collection= db.collection("loyer");
-        return  collection.aggregate([...groupby,...pipeline]).toArray().then()
+        return  collection.aggregate([...depense,...pipeline]).toArray().then()
     }
 
     static getAll(db:Db,pipeline=new Array()){

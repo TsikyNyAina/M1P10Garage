@@ -397,3 +397,52 @@ export const  relationResponsable=[
         }
     }
 ];
+
+export const depense=[
+    {
+        $addFields: {
+           dateField: { $dateFromString: { dateString: "$datePayement", format: "%Y-%m-%dT%H:%M:%S.%LZ" } }
+        }
+     },{
+       $lookup: {
+          from: "salaire",
+          localField: "datePayement",
+          foreignField: "datePayement",
+          as: "salaire",
+          pipeline:[
+                
+                {
+                    $addFields:{
+                        datePayement:{ $dateFromString: { dateString: "$datePayement", format: "%Y-%m-%dT%H:%M:%S.%LZ" } }
+                    }
+                }
+                 
+            ]
+       }
+    },
+    {
+       $lookup: {
+          from: "achatPiece",
+          localField: "datePayement",
+          foreignField: "dateAchat",
+          as: "achatPiece",
+          pipeline:[
+                
+                {
+                    $addFields:{
+                        dateAchat:{ $dateFromString: { dateString: "$dateAchat", format: "%Y-%m-%dT%H:%M:%S.%LZ" } }
+                    }
+                }
+                 
+            ]
+       }
+    },
+    {
+       $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$dateField" } },
+          salaire: { $sum: "$salaire.montant" },
+          loyer: { $sum: "$montant" },
+          achatPiece: { $sum: "$prixUnitaire" }
+       }
+    }
+ ];
