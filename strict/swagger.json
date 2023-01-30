@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "paths": {
-        "/achatPiece/option/{option}": {
+        "/api/achatPiece/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -23,7 +23,7 @@
                 ]
             }
         },
-        "/achatPiece/depense": {
+        "/api/achatPiece/depense": {
             "get": {
                 "parameters": [],
                 "responses": {
@@ -36,7 +36,7 @@
                 ]
             }
         },
-        "/achatPiece/{id}": {
+        "/api/achatPiece/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -81,7 +81,7 @@
                 ]
             }
         },
-        "/achatPiece": {
+        "/api/achatPiece": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -167,7 +167,7 @@
                 }
             }
         },
-        "/client/option/{option}": {
+        "/api/client/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -189,7 +189,7 @@
                 ]
             }
         },
-        "/client/{id}": {
+        "/api/client/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -234,7 +234,7 @@
                 ]
             }
         },
-        "/client": {
+        "/api/client": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -302,7 +302,7 @@
                 }
             }
         },
-        "/client/{email}": {
+        "/api/client/{email}": {
             "post": {
                 "parameters": [
                     {
@@ -323,7 +323,7 @@
                 ]
             }
         },
-        "/loyer/option/{option}": {
+        "/api/loyer/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -345,7 +345,7 @@
                 ]
             }
         },
-        "/loyer/depense": {
+        "/api/loyer/depense": {
             "get": {
                 "parameters": [],
                 "responses": {
@@ -358,7 +358,7 @@
                 ]
             }
         },
-        "/loyer/{id}": {
+        "/api/loyer/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -403,7 +403,7 @@
                 ]
             }
         },
-        "/loyer": {
+        "/api/loyer": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -481,7 +481,7 @@
                 }
             }
         },
-        "/marquePiece/option/{option}": {
+        "/api/marquePiece/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -503,7 +503,7 @@
                 ]
             }
         },
-        "/marquePiece/{id}": {
+        "/api/marquePiece/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -548,7 +548,7 @@
                 ]
             }
         },
-        "/marquePiece": {
+        "/api/marquePiece": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -654,7 +654,7 @@
                 }
             }
         },
-        "/marquePieceModelVoiture/option/{option}": {
+        "/api/marquePieceModelVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -676,7 +676,7 @@
                 ]
             }
         },
-        "/marquePieceModelVoiture/{id}": {
+        "/api/marquePieceModelVoiture/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -721,7 +721,7 @@
                 ]
             }
         },
-        "/marquePieceModelVoiture": {
+        "/api/marquePieceModelVoiture": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -911,7 +911,7 @@
                 }
             }
         },
-        "/marqueVoiture/option/{option}": {
+        "/api/marqueVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -933,7 +933,7 @@
                 ]
             }
         },
-        "/marqueVoiture/{id}": {
+        "/api/marqueVoiture/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -978,7 +978,7 @@
                 ]
             }
         },
-        "/marqueVoiture": {
+        "/api/marqueVoiture": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1028,7 +1028,7 @@
                 }
             }
         },
-        "/modelVoiture/option/{option}": {
+        "/api/modelVoiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1050,7 +1050,7 @@
                 ]
             }
         },
-        "/modelVoiture/{id}": {
+        "/api/modelVoiture/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1095,7 +1095,7 @@
                 ]
             }
         },
-        "/modelVoiture": {
+        "/api/modelVoiture": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1175,7 +1175,7 @@
                 }
             }
         },
-        "/payement/option/{option}": {
+        "/api/payement/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1197,7 +1197,7 @@
                 ]
             }
         },
-        "/payement/entree": {
+        "/api/payement/entree": {
             "get": {
                 "parameters": [],
                 "responses": {
@@ -1210,7 +1210,7 @@
                 ]
             }
         },
-        "/payement/{id}": {
+        "/api/payement/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1255,7 +1255,7 @@
                 ]
             }
         },
-        "/payement": {
+        "/api/payement": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1411,7 +1411,7 @@
                 }
             }
         },
-        "/reparation/option/{option}": {
+        "/api/reparation/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1433,7 +1433,7 @@
                 ]
             }
         },
-        "/reparation/{id}": {
+        "/api/reparation/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1478,7 +1478,7 @@
                 ]
             }
         },
-        "/reparation": {
+        "/api/reparation": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1590,7 +1590,7 @@
                 }
             }
         },
-        "/reparationDetail/option/{option}": {
+        "/api/reparationDetail/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1612,7 +1612,7 @@
                 ]
             }
         },
-        "/reparationDetail": {
+        "/api/reparationDetail": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1706,7 +1706,7 @@
                 }
             }
         },
-        "/reparationDetail/{id}": {
+        "/api/reparationDetail/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1751,7 +1751,7 @@
                 ]
             }
         },
-        "/responsable/option/{option}": {
+        "/api/responsable/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1773,7 +1773,7 @@
                 ]
             }
         },
-        "/responsable/{id}": {
+        "/api/responsable/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1818,7 +1818,7 @@
                 ]
             }
         },
-        "/responsable": {
+        "/api/responsable": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -1886,7 +1886,7 @@
                 }
             }
         },
-        "/salaire/option/{option}": {
+        "/api/salaire/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -1908,7 +1908,7 @@
                 ]
             }
         },
-        "/salaire/depense": {
+        "/api/salaire/depense": {
             "get": {
                 "parameters": [],
                 "responses": {
@@ -1921,7 +1921,7 @@
                 ]
             }
         },
-        "/salaire/{id}": {
+        "/api/salaire/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -1966,7 +1966,7 @@
                 ]
             }
         },
-        "/salaire": {
+        "/api/salaire": {
             "post": {
                 "parameters": [],
                 "responses": {
@@ -2092,7 +2092,7 @@
                 }
             }
         },
-        "/voiture/option/{option}": {
+        "/api/voiture/option/{option}": {
             "get": {
                 "parameters": [
                     {
@@ -2114,7 +2114,7 @@
                 ]
             }
         },
-        "/voiture/{id}": {
+        "/api/voiture/{id}": {
             "get": {
                 "parameters": [
                     {
@@ -2159,7 +2159,7 @@
                 ]
             }
         },
-        "/voiture": {
+        "/api/voiture": {
             "post": {
                 "parameters": [],
                 "responses": {
