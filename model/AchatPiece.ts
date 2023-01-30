@@ -4,6 +4,7 @@ import { assignArray } from "../util";
 import { MarquePiece } from "./MarquePiece";
 import { cast, swaggerIgnore } from "../decorator";
 import { relationMarquePiece } from "../relation";
+import { cp } from "fs";
 
 export class AchatPiece extends Entity {
     dateAchat: Date;
@@ -28,14 +29,14 @@ export class AchatPiece extends Entity {
     }
 
     static getAll1(db: Db, pipeline = new Array()) {
-        let groupby = [
+         let groupby = [
             {
                 $sort: { dateAchat: -1 }
              },
             {
                $group: {
                   _id: "$dateAchat",
-                  total: { $sum: { $multiply: [ "$prixUnitaire", "$quantity" ] } }
+                  total: { $sum: { $multiply: [ "$prixUnitaire", "$quantity" ] }}
                }
             }
          ];
