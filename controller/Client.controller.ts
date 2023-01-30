@@ -5,6 +5,18 @@ import connect from "../datasource";
 
 import { cast, Delete, Get, Post, Put, RequestBody, RequestParam, RestController } from "../decorator";
 import { Client } from "../model"; 
+import * as nodemailer from "nodemailer";
+
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "tramasimiarantsoa@gmail.com",
+      pass: "zsxeiauhdghgrxdh"
+    }
+  });
 
 
 
@@ -61,6 +73,31 @@ export class ClientController{
         }
         finally{
             return await dbClient?.close()
+        }
+    }
+    @Post("/:email")
+    async sendmail(res:Response,@RequestParam("email") email:string){
+        
+        try {
+            const mailOptions = {
+                from: "tramasimiarantsoa@gmail.com",
+                to: email,
+                subject: "M1P10MEAN",
+                text: "Project mean. Theme Garage. Binome: Ramasimiarantsoa Tsiky Ny Aina et Andriamarosoa Raherinjato Tina"
+              };
+            
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  return res.status(400).send({ error });
+                }
+            
+                return res.status(200).send({ message: "Email sent successfully" });
+              });
+        } catch (error:any) {
+            res.status(500).json(error.message||error)
+        }
+        finally{
+            
         }
     }
     @Put("")
