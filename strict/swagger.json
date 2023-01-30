@@ -289,6 +289,27 @@
                 }
             }
         },
+        "/client/{email}": {
+            "post": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "ClientController"
+                ]
+            }
+        },
         "/loyer/option/{option}": {
             "get": {
                 "parameters": [

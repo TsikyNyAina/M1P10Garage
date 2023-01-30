@@ -122,6 +122,18 @@ export function init1(): void {
                 }
             });
 
+            router.post("/:email",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                arg.push(req.params.email);
+                try{
+                    await (this.sendmail as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.put("",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
