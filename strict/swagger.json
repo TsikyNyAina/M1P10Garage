@@ -23,6 +23,19 @@
                 ]
             }
         },
+        "/achatPiece/depense": {
+            "get": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "AchatPieceController"
+                ]
+            }
+        },
         "/achatPiece/{id}": {
             "get": {
                 "parameters": [
@@ -322,6 +335,19 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "LoyerController"
+                ]
+            }
+        },
+        "/loyer/depense": {
+            "get": {
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -1171,6 +1197,19 @@
                 ]
             }
         },
+        "/payement/entree": {
+            "get": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "PayementController"
+                ]
+            }
+        },
         "/payement/{id}": {
             "get": {
                 "parameters": [
@@ -1859,6 +1898,19 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "SalaireController"
+                ]
+            }
+        },
+        "/salaire/depense": {
+            "get": {
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK"

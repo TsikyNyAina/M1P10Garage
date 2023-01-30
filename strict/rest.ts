@@ -29,6 +29,17 @@ export function init0(): void {
                 }
             });
 
+            router.get("/depense",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                try{
+                    await (this.getDepense as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.get("/:id",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -173,6 +184,17 @@ export function init2(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/depense",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                try{
+                    await (this.getDepense as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)
@@ -524,6 +546,17 @@ export function init7(): void {
                 }
             });
 
+            router.get("/entree",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                try{
+                    await (this.getEntree as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
             router.get("/:id",async (req:Request,res:Response)=>{
                 const arg=new Array<any>();
                 arg.push(res);
@@ -794,6 +827,17 @@ export function init11(): void {
                 arg.push(req.params.option);
                 try{
                     await (this.getAll as any)(...arg);
+                }
+                catch(error:any){
+                    res.status(500).send(error?.message||error)
+                }
+            });
+
+            router.get("/depense",async (req:Request,res:Response)=>{
+                const arg=new Array<any>();
+                arg.push(res);
+                try{
+                    await (this.getDepense as any)(...arg);
                 }
                 catch(error:any){
                     res.status(500).send(error?.message||error)

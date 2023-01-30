@@ -241,7 +241,23 @@ export const detailReparationRelation=[
         }
     }
 ];
-
+export const payementRelation=[
+    {
+        $lookup:{
+            from:"payement",
+            localField:"_id",
+            foreignField:"reparationId",
+            as:"payement"
+        }
+    },
+    {
+        $addFields:{
+            payement:{
+                $arrayElemAt:["$payement",0]
+            }
+        }
+    }
+];
 export const relation={
     $lookup:{
         from: "activity",

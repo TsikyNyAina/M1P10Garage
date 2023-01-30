@@ -548,6 +548,22 @@ export function init34(): void {
 }
 
 export function init35(): void {
+    Object.defineProperty(Reparation.prototype,"payement",{
+        set:function(value:any){
+            if(value instanceof Payement || !value){}
+            else if (typeof value!= 'object' )
+                throw new Error(JSON.stringify(value) +"cannot be casted to payement:Payement");
+            else value=Object.assign(new Payement(),value);
+            Object.defineProperty(this,"payement",{
+                value:value,
+                enumerable:true,
+                writable:true,
+            })
+        }
+    })
+}
+
+export function init36(): void {
     Object.defineProperty(ReparationDetail.prototype,"marquePiece",{
         set:function(value:any){
             if(value instanceof MarquePiece || !value){}
@@ -563,7 +579,7 @@ export function init35(): void {
     })
 }
 
-export function init36(): void {
+export function init37(): void {
     Object.defineProperty(ReparationDetail.prototype,"reparation",{
         set:function(value:any){
             if(value instanceof Reparation || !value){}
@@ -579,7 +595,7 @@ export function init36(): void {
     })
 }
 
-export function init37(): void {
+export function init38(): void {
     Object.defineProperty(Resource.prototype,"activity",{
         set:function(value:any){
             if (value && !(value instanceof Array))
@@ -599,7 +615,7 @@ export function init37(): void {
     })
 }
 
-export function init38(): void {
+export function init39(): void {
     Object.defineProperty(Salaire.prototype,"responsable",{
         set:function(value:any){
             if(value instanceof Responsable || !value){}
@@ -615,7 +631,7 @@ export function init38(): void {
     })
 }
 
-export function init39(): void {
+export function init40(): void {
     Object.defineProperty(Voiture.prototype,"modelVoiture",{
         set:function(value:any){
             if(value instanceof ModelVoiture || !value){}
@@ -631,7 +647,7 @@ export function init39(): void {
     })
 }
 
-export function init40(): void {
+export function init41(): void {
     Object.defineProperty(Voiture.prototype,"client",{
         set:function(value:any){
             if(value instanceof Client || !value){}
@@ -647,7 +663,7 @@ export function init40(): void {
     })
 }
 
-export function init41(): void {
+export function init42(): void {
     Object.defineProperty(Voiture.prototype,"reparation",{
         set:function(value:any){
             if (value && !(value instanceof Array))

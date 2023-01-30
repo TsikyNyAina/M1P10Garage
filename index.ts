@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 import express from "express";  
 import swaggerJson from "./strict/swagger.json"
 import swaggerUi from "swagger-ui-express";  
+import connect from "./datasource";
+import { Payement } from "./model";
 
 dotenv.config()
 for(let v of Object.values(cast)) v()
@@ -37,33 +39,21 @@ app.listen(port,()=>console.log(`http://localhost:${port}`))
 
 
 
-// connect.then(async (client)=>{
-
-//     //tester
-//     // await Resource.save(client.currentDb,{resourceName:"piece",})
-//     // Activity.save(client.currentDb,{activityName:"achat",resourceId:ObjectId.createFromHexString("le ao amin base")})
-
-
-
-//     //jereo ito fonction ito fa ao le manao relation...mapiasa $lookup et pipeline
-//     await new Resource().getAll(client.currentDb,[{    
-//         $addFields:{
-//             //mamadika tableau ho lasa le element ao anatiny
-//             // activity:{
-//             //     $arrayElemAt:["$activity",0]
-//             // }
+connect().then(async (client)=>{
+//     const collection=client.currentDb.collection("reparation");
+//     const rep=await collection.aggregate([
+//         {
+//             $addFields:{
+                
+//             }
 //         }
-//     }]).forEach(e=>{
-//         console.log(assign(Resource,e))
+//     ]).toArray()
+//     console.log(rep);
+//     client.close()
 
-//     })
-
- 
-     
+    
 
 
-
-//     await client.close()
-// }).catch(console.log)
+}).catch(console.log)
 
 

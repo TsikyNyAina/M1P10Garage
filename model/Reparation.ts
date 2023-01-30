@@ -7,7 +7,8 @@ import { ReparationDetail } from "./ReparationDetail";
 import { cast, swaggerIgnore } from "../decorator";
 import { assignArray } from "../util";
 import { idToString } from "../Parameter";
-import { detailReparationRelation } from "../relation";
+import { detailReparationRelation, payementRelation } from "../relation";
+import { Payement } from "./Payement";
 
 
 
@@ -26,6 +27,7 @@ export class Reparation extends Entity {
     
     @cast @swaggerIgnore reparationDetail:ReparationDetail[];
     @cast @swaggerIgnore voiture:Voiture;
+    @cast @swaggerIgnore payement:Payement
     constructor(){
         super();
         Object.defineProperty(Entity.prototype,"voitureId",{
@@ -69,7 +71,7 @@ export class Reparation extends Entity {
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("reparation");
          
-        return collection.aggregate([...detailReparationRelation,...pipeline]).toArray().then(m=>assignArray(Reparation,m))
+        return collection.aggregate([...detailReparationRelation,...payementRelation,...pipeline]).toArray().then(m=>assignArray(Reparation,m))
     }
     async update(db:Db){    
         const collection=db.collection("reparation");
