@@ -97,6 +97,21 @@ export class Payement extends Entity{
             enumerable:true,
             configurable:true
         })
+        Object.defineProperty(Entity.prototype,"datePayement",{
+            set:function(id){
+                if(typeof id==="string" ||typeof id==="number" ){
+                    id=new Date(id)
+                }
+                Object.defineProperty(this,"datePayement",{
+                    value:id,
+                    enumerable:true,
+                    configurable:true,
+                    writable:true
+                })
+            },
+            enumerable:true,
+            configurable:true
+        })
     }
 
 }
