@@ -57,7 +57,8 @@ export class ModelVoiture extends Entity{
                 Object.defineProperty(this,"marqueVoitureId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,

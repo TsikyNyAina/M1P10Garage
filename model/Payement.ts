@@ -52,5 +52,22 @@ export class Payement extends Entity{
         ])
 
     }
+    constructor(){
+        super()
+        Object.defineProperty(Entity.prototype,"reparationId",{
+            set:function(id){
+                if(typeof id==="string")
+                    id=ObjectId.createFromHexString(id);
+                Object.defineProperty(this,"reparationId",{
+                    value:id,
+                    enumerable:true,
+                    configurable:true,
+                    writable:true
+                })
+            },
+            enumerable:true,
+            configurable:true
+        })
+    }
 
 }

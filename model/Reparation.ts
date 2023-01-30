@@ -35,7 +35,8 @@ export class Reparation extends Entity {
                 Object.defineProperty(this,"voitureId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,
@@ -72,7 +73,7 @@ export class Reparation extends Entity {
     }
     async update(db:Db){    
         const collection=db.collection("reparation");
-        await collection.updateOne({_id:this.id},{
+        const rep=await collection.updateOne({_id:this.id},{
             $set:{
                 voitureId:this.voitureId,
                 startDate:this.startDate,
@@ -83,6 +84,14 @@ export class Reparation extends Entity {
                 status:this.status,
             }
         })
+        if(this.reparationDetail){
+            for(let r of this.reparationDetail){
+                if(!r.id){
+                    r.reparationId=this.id
+                    await r.save(db)
+                }
+            }
+        }
         return this;
     }
     delete(db:Db){

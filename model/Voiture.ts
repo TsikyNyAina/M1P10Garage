@@ -70,7 +70,8 @@ export class Voiture extends Entity{
                 Object.defineProperty(this,"modelVoitureId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,
@@ -83,7 +84,8 @@ export class Voiture extends Entity{
                 Object.defineProperty(this,"clientId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,

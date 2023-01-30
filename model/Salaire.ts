@@ -58,14 +58,15 @@ export class Salaire extends Entity{
     }
     constructor(){
         super();
-        Object.defineProperty(this,"responsableId",{
+        Object.defineProperty(Entity.prototype,"responsableId",{
             set:function(id){
                 if(typeof id==="string")
                     id=ObjectId.createFromHexString(id);
                 Object.defineProperty(this,"responsableId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,

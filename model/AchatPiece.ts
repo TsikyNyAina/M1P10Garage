@@ -64,7 +64,8 @@ export class AchatPiece extends Entity {
                 Object.defineProperty(this,"marquePieceId",{
                     value:marquePieceId,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,

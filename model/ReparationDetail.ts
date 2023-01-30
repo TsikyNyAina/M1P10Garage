@@ -27,7 +27,8 @@ export class ReparationDetail extends Entity{
                 Object.defineProperty(this,"reparationId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
                 })
             },
             enumerable:true,
@@ -40,7 +41,9 @@ export class ReparationDetail extends Entity{
                 Object.defineProperty(this,"marquePieceId",{
                     value:id,
                     enumerable:true,
-                    configurable:true
+                    configurable:true,
+                    writable:true
+
                 })
             },
             enumerable:true,
