@@ -27,6 +27,21 @@ export class AchatPiece extends Entity {
         return collection.aggregate([...relationMarquePiece,...pipeline]).toArray().then(m => assignArray(AchatPiece, m))
     }
 
+    static getAll1(db: Db, pipeline = new Array()) {
+        let groupby = [
+            {
+                $sort: { dateAchat: -1 }
+             },
+            {
+               $group: {
+                  _id: "$dateAchat",
+                  total: { $sum: { $multiply: [ "$prixUnitaire", "$quantity" ] } }
+               }
+            }
+         ];
+        const collection = db.collection("achatPiece");
+        return collection.aggregate([...groupby,...pipeline]).next()
+    }
     static getById(db: Db, id: string) {
         return AchatPiece.getAll(db, [
             {

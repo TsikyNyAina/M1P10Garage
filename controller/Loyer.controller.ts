@@ -25,6 +25,20 @@ export class LoyerController{
         }
     }
 
+    @Get("/depense")
+    async getDepense(res:Response){
+        let client ;
+        try {
+            client=await connect();
+            res.json(await Loyer.getAll1(client.currentDb))
+        } catch (error:any) {
+            res.status(500).send(error.message)
+        }
+        finally{
+            await client?.close();
+        }
+    }
+
     @Get("/:id")
     async getById(res:Response,@RequestParam("id") id:string ){
         let dbClient ;

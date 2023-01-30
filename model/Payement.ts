@@ -22,9 +22,38 @@ export class Payement extends Entity{
     }
 
     static getAll(db:Db,pipeline=new Array<any>()){
+        let groupby = [
+            {
+                $sort: { datePayement: -1 }
+             },
+            {
+               $group: {
+                  _id: "$datePayement",
+                  total: { $sum: "$montant" }
+               }
+            }
+         ];
         const collection=db.collection("payement");
         
-        return collection.aggregate([...reparationRelation1,...pipeline]).toArray().then(m=>assignArray(Payement,m))
+        return collection.aggregate([...groupby,...pipeline]).next()
+    }
+
+    static getAll1(db:Db,pipeline=new Array<any>()){
+        let groupby = [
+            {
+                $sort: { datePayement: -1 }
+             },
+            {
+               $group: {
+                  _id: "$datePayement",
+                  total: { $sum: "$montant" }
+               }
+            }
+         ];
+        
+        const collection=db.collection("payement");
+        
+        return collection.aggregate([...groupby,...pipeline]).next()
     }
     async update(db:Db){    
         const collection=db.collection("payement");
@@ -42,8 +71,8 @@ export class Payement extends Entity{
         return collection.deleteOne({_id:this.id})    
     }
 
-    static async getById(db: Db, id: string) {
-        return await Payement.getAll(db, [
+    static getById(db: Db, id: string) {
+        return Payement.getAll(db, [
             {
                 $match: {
                     _id: ObjectId.createFromHexString(id)

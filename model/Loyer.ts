@@ -6,16 +6,16 @@ import { depense } from "../relation";
 
 
 
-export class Loyer extends Entity{
+export class Loyer extends Entity {
     datePayement: Date;
     montant: number;
-    mois:Date;
-    async save(db:Db){
-        const collection= db.collection("loyer")
-        return Object.assign(this,await collection.insertOne({
-            datePayement:this.datePayement,
-            montant:this.montant,
-            mois:this.mois
+    mois: Date;
+    async save(db: Db) {
+        const collection = db.collection("loyer")
+        return Object.assign(this, await collection.insertOne({
+            datePayement: this.datePayement,
+            montant: this.montant,
+            mois: this.mois
         }));
     }
 
@@ -28,9 +28,12 @@ export class Loyer extends Entity{
             }
         ])
     }
-    
-    static getAll1(db:Db,pipeline=new Array()){
+
+    static getAll1(db: Db, pipeline = new Array()) {
         let groupby = [
+            {
+                $sort: { datePayement: -1 }
+             },
             {
                $group: {
                   _id: "$datePayement",
@@ -38,32 +41,33 @@ export class Loyer extends Entity{
                }
             }
          ];
-        const collection= db.collection("loyer");
-        return  collection.aggregate([...depense,...pipeline]).toArray().then()
+        
+        const collection = db.collection("loyer");
+        return collection.aggregate([...groupby, ...pipeline]).next()
     }
 
-    static getAll(db:Db,pipeline=new Array()){
-        const collection= db.collection("loyer");
-        return  collection.aggregate([...pipeline]).toArray().then(m=>assignArray(Loyer,m))
+    static getAll(db: Db, pipeline = new Array()) {
+        const collection = db.collection("loyer");
+        return collection.aggregate([...pipeline]).toArray().then(m => assignArray(Loyer, m))
     }
-    async update(db:Db){    
-        const collection=db.collection("loyer");
-        await collection.updateOne({_id:this.id},{
-            $set:{
-                datePayement:this.datePayement,
-                montant:this.montant,
-                mois:this.mois
+    async update(db: Db) {
+        const collection = db.collection("loyer");
+        await collection.updateOne({ _id: this.id }, {
+            $set: {
+                datePayement: this.datePayement,
+                montant: this.montant,
+                mois: this.mois
             }
         })
         return this;
     }
-    delete(db:Db){
-        const collection=db.collection("loyer");
-        return collection.deleteOne({_id:this.id})    
+    delete(db: Db) {
+        const collection = db.collection("loyer");
+        return collection.deleteOne({ _id: this.id })
     }
-    constructor(){
+    constructor() {
         super();
-        
+
     }
 
 

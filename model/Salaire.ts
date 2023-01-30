@@ -40,6 +40,24 @@ export class Salaire extends Entity{
         
         return  collection.aggregate([...relationResponsable,...pipeline]).toArray().then(m=>assignArray(Salaire,m))
     }
+
+    static getAll1(db:Db,pipeline=new Array()){
+        let groupby = [
+            {
+                $sort: { datePayement: -1 }
+             },
+            {
+               $group: {
+                  _id: "$datePayement",
+                  total: { $sum: "$montant" }
+               }
+            }
+         ];
+        const collection= db.collection("salaire");
+        
+        return  collection.aggregate([...groupby,...pipeline]).next()
+    }
+
     async update(db:Db){    
         const collection=db.collection("salaire");
         await collection.updateOne({_id:this.id},{
