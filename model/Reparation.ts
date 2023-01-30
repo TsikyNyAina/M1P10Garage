@@ -46,7 +46,7 @@ export class Reparation extends Entity {
     }
     async save(db:Db){
         const collection=db.collection("reparation");
-        return Object.assign(this,await collection.insertOne({
+        let rep=Object.assign(this,await collection.insertOne({
             voitureId:this.voitureId,
             startDate:this.startDate,
             endDate:this.endDate,
@@ -55,6 +55,15 @@ export class Reparation extends Entity {
             cost:this.cost,
             status:this.status,
         }));
+        if(this.reparationDetail){
+            for(let r of this.reparationDetail){
+                if(!r.id){
+                    r.reparationId=rep.id
+                    await r.save(db)
+                }
+            }
+        }
+        return rep; 
     }
     static getAll(db:Db,pipeline=new Array<any>()){
         const collection=db.collection("reparation");
